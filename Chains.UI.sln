@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.25920.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chains.UI", "Chains.UI\Chains.UI.csproj", "{5BF8030C-4873-4699-A9D2-B6430B15FEBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chains.API", "Chains.API\Chains.API.csproj", "{F1BC2F87-C4D8-4895-9127-B7075A16CE90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chains.API.Tests", "Chains.API.Tests\Chains.API.Tests.csproj", "{C79D16A8-95B8-4439-8796-E8E379F3159D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BF8030C-4873-4699-A9D2-B6430B15FEBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BF8030C-4873-4699-A9D2-B6430B15FEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BF8030C-4873-4699-A9D2-B6430B15FEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BF8030C-4873-4699-A9D2-B6430B15FEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1BC2F87-C4D8-4895-9127-B7075A16CE90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1BC2F87-C4D8-4895-9127-B7075A16CE90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1BC2F87-C4D8-4895-9127-B7075A16CE90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1BC2F87-C4D8-4895-9127-B7075A16CE90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C79D16A8-95B8-4439-8796-E8E379F3159D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C79D16A8-95B8-4439-8796-E8E379F3159D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C79D16A8-95B8-4439-8796-E8E379F3159D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C79D16A8-95B8-4439-8796-E8E379F3159D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

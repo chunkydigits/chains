@@ -1,0 +1,54 @@
+<div class="col-md-12 chain">
+    
+    <div *ngIf="chain">
+        Property ID: {{propertyId}}
+
+
+        <div class="row" *ngIf="chain">
+
+            <div class="chain-item" *ngFor="let chainItem of chain">
+
+                <div class="row-divider" *ngIf="(chainItem.type === 5) && (((chainItem.order - 1) % 6) === 0)"></div>
+
+                <div class="row-connect ltr border-bottom border-left incoming" *ngIf="((chainItem.type !== 1) && (chainItem.type !== 2)) && (((chainItem.order  -1) % 12) === 0)"></div>
+                <div class="row-connect rtl border-bottom border-right incoming" *ngIf="((chainItem.type === 5) || (chainItem.type === 4) || (chainItem.type === 3)) && (((chainItem.order - 1) % 6) === 0) && (((chainItem.order -1 ) % 12) !== 0)"></div>
+
+                <div *ngIf="chainItem.type === 1 || chainItem.type === 2" class="blank-starter ltr"></div>
+                <div *ngIf="chainItem.type === 1" class="node terminator type-start-ready ltr" title="The chain has one person who is not selling a property, which completes this end of the chain.">start</div>
+                <div *ngIf="chainItem.type === 2" class="node terminator type-start-not-ready ltr" title="The chain isn't yet complete at this end as the person at this end is looking for a property to buy.">start</div>
+
+                <div *ngIf="chainItem.type === 3"
+                     class="node terminator type-end-ready"
+                     [class.ltr]="((chainItem.order % 12) > 0) && ((chainItem.order % 12) <= 6)"
+                     [class.rtl]="((chainItem.order % 12) == 0) || ((chainItem.order % 12) > 6)"
+                     title="The chain has one person who is not buying a new property, which completes this end of the chain.">end</div>
+                <div *ngIf="chainItem.type === 4"
+                     class="node terminator type-end-not-ready"
+                     [class.ltr]="((chainItem.order % 12) > 0) && ((chainItem.order % 12) <= 6)"
+                     [class.rtl]="((chainItem.order % 12) == 0) || ((chainItem.order % 12) > 6)"
+                     title="The chain isn't yet complete at this end as the person at this end is still looking for someone to buy their house">end</div>
+
+                <div *ngIf="chainItem.type === 5"
+                     class="col-md-12 node"
+                     [class.good]="chainItem.status === 1"
+                     [class.ok]="chainItem.status === 2"
+                     [class.bad]="chainItem.status === 3"
+                     [class.ltr]="((chainItem.order % 12) > 0) && ((chainItem.order % 12) <= 6)"
+                     [class.rtl]="((chainItem.order % 12) == 0) || ((chainItem.order % 12) > 6)">
+                    <h3>{{chainItem.id}} : {{chainItem.displayName}}</h3>
+                </div>
+                <div class="line"
+                     *ngIf="(chainItem.type === 1 || chainItem.type === 2 || chainItem.type === 5) && (chainItem.order % 6) !== 0"
+                     [class.ltr]="((chainItem.order % 12) > 0) && ((chainItem.order % 12) <= 6)"
+                     [class.rtl]="((chainItem.order % 12) == 0) || ((chainItem.order % 12) > 6)"></div>
+
+                <div class="row-connect ltr border-top border-right" *ngIf="(chainItem.type === 5) && ((chainItem.order % 6) === 0) && ((chainItem.order % 12) !== 0)"></div>
+                <div class="row-connect rtl border-top border-left" *ngIf="(chainItem.type === 5) && (chainItem.order !== 6) && ((chainItem.order % 12) === 0)"></div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!chain">
+            There are no chain elements
+        </div>
+    </div>
+    <div *ngIf="!chain">No chain information to display</div>
+</div>

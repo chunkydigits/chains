@@ -1,0 +1,23 @@
+<div class="col-md-3">
+    <div class="row" *ngIf="!addingProperty">
+        <button class="btn btn-sm btn-success btn-block"
+                (click)="addProperty()">
+            <i class="glyphicon glyphicon-plus"></i>
+            &nbsp;Add Property
+        </button>
+    </div>
+    <div class="row" *ngIf="properties">
+        <div *ngFor="let property of properties"
+             (click)=selectProperty(property.id)
+             class="clickable">
+                {{property.displayName}}
+        </div>
+    </div>
+    <div class="row" *ngIf="!properties">
+        There are no properties to view
+    </div>
+</div>
+<property-add *ngIf="addingProperty" 
+              (propertyCreated)="newPropertyCreated($event)" 
+              (propertyCreateCancelled)="newPropertyCreateCancelled($event)"></property-add>
+<property-info [property]="activeProperty" *ngIf="!addingProperty"></property-info>

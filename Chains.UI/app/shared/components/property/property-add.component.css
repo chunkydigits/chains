@@ -1,0 +1,11 @@
+property-info { 
+
+}
+
+.clickable {
+    cursor:pointer;
+}
+
+.no-overflow { 
+    overflow:hidden;
+}

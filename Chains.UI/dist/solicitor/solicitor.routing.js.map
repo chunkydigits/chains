@@ -1,0 +1,1 @@
+{"version":3,"file":"solicitor.routing.js","sourceRoot":"","sources":["../../app/solicitor/solicitor.routing.ts"],"names":[],"mappings":";;AACA,4CAAuD;AACvD,+DAA2D;AAE3D,MAAM,eAAe,GAAW;IAC5B;QACI,IAAI,EAAE,EAAE;QACR,QAAQ,EAAE;YACN;gBACI,IAAI,EAAE,EAAE;gBACR,SAAS,EAAE,wCAAkB;aAChC;SAAC;KACT;CACJ,CAAC;AAEW,QAAA,gBAAgB,GAAwB,qBAAY,CAAC,QAAQ,CAAC,eAAe,CAAC,CAAC"}

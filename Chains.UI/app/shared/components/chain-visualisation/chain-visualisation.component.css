@@ -1,0 +1,144 @@
+.chain {
+    background-color: #cccccc;
+    position:relative;
+}
+
+.chain-item {
+    text-align:center;
+}
+
+.node {
+    width: 15%;
+    display: inline-block;
+    line-height: 100px;
+    text-align: center;
+    z-index: 10;
+    height: 100px;
+}
+        
+.good { 
+    background-color: green; 
+    border: 1px solid darkgreen;
+}
+
+.ok { 
+    background-color: orange; 
+    border: 1px solid darkorange;
+}
+
+.bad { 
+    background-color: red;
+    border: 1px solid darkred;
+}
+
+.row-divider {
+    width: 100%;
+    display: inline-block;
+    height: 0px;
+    border: none;
+}
+
+.terminator { 
+    font-size:30px;
+    line-height:120px;
+    text-transform: uppercase;
+}
+
+.type-start-ready { 
+    background-color:grey;
+    border-top-right-radius:50%;
+    border-bottom-right-radius:50%;
+}
+
+.type-start-not-ready {
+    text-align:right;
+    background: url('/content/images/ripped-edge-rtl.png') no-repeat right;
+}
+
+.type-end-ready.ltr {
+    background-color: grey;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.type-end-not-ready.ltr {
+    text-align: left;
+    padding-left: 10px;
+    background: url('/content/images/ripped-edge-ltr.png') no-repeat left;
+}
+
+.type-end-ready.rtl {
+    background-color: grey;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+.type-end-not-ready.rtl {
+    text-align: right;
+    padding-right: 10px;
+    background: url('/content/images/ripped-edge-rtl.png') no-repeat right;
+}
+
+
+/* TODO: stuff from test - remove comment when working as required */
+
+.line {
+    z-index: -10;
+    width: 1.3%;
+    display: inline-block;
+    height: 50px;
+    border-bottom: dashed 1px black;
+}
+
+.rtl {
+    float: right;
+}
+
+.ltr {
+    float: left;
+}
+
+.row {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+}
+
+.blank-starter {
+    height: 100px;
+    display: inline-block;
+    width: 1%;
+    margin-right: 1px;
+    border-right: 1px solid transparent;
+}
+
+.row-connect {
+    height: 60px;
+    display: inline-block;
+    width: 1%;
+}
+
+.border-top {
+    margin-top: 50px;
+    border-top: dashed 1px black;
+}
+
+.border-bottom {
+    border-bottom: dashed 1px black;
+}
+
+.border-right {
+    border-right: dashed 1px black;
+}
+
+.border-bottom.border-right {
+    margin-right: 1.5%;
+}
+
+.border-left {
+    border-left: dashed 1px black;
+}
+
+.incoming { 
+    margin-top:-20px;
+}

@@ -1,0 +1,43 @@
+.users-list {
+    cursor: pointer;
+}
+
+.jumbotron .glyphicon {
+    font-size: 80px;
+}
+
+.active {
+    font-weight: bold;
+}
+
+.navbar-inverse { 
+    background-color:#30bf2f;
+}
+
+.navbar-nav {
+    margin: 20px;
+}
+
+    .navbar-nav li {
+        margin-right: 5px;
+        font-size:25px;
+    }
+
+#logo {
+    margin-top: -20px;
+}
+
+main {
+    margin-bottom: 40px;
+}
+
+footer {
+    background-color: #30bf2f;
+    color:white;
+    position: fixed;
+    bottom: 0;
+    width: 996px;
+    height: 40px;
+    padding:10px;
+    z-index:99999;
+}

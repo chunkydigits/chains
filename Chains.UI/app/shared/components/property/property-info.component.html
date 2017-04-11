@@ -1,0 +1,15 @@
+<div class="col-md-9">
+    <div class="row" *ngIf="property">
+        {{property.displayAddress}}
+        {{property.id}}
+        <chain-visualisation [propertyId]="property.id"></chain-visualisation>
+        <div class="col-md-12">
+            <div class="input-group" *ngFor="let checkListItem of property.checkListItems">
+                
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="!property">
+        <<<<<< Click on the property to see information about it. 
+    </div>
+</div>
