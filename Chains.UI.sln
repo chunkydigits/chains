@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.25920.0
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chains.UI", "Chains.UI\Chains.UI.csproj", "{5BF8030C-4873-4699-A9D2-B6430B15FEBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chains.API", "Chains.API\Chains.API.csproj", "{F1BC2F87-C4D8-4895-9127-B7075A16CE90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chains.API", "Chains.API\Chains.API.csproj", "{5BE9EB8A-A909-43B6-939E-ABF28D16FDA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chains.API.Tests", "Chains.API.Tests\Chains.API.Tests.csproj", "{C79D16A8-95B8-4439-8796-E8E379F3159D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6847385C-AF61-4FEA-927D-A38F0FF36365}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chains.API.Test", "Tests\Chains.API.Test\Chains.API.Test.csproj", "{03C2FAB2-0362-4DD3-8C87-F691C5DA648E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +21,19 @@ Global
 		{5BF8030C-4873-4699-A9D2-B6430B15FEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BF8030C-4873-4699-A9D2-B6430B15FEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BF8030C-4873-4699-A9D2-B6430B15FEBF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F1BC2F87-C4D8-4895-9127-B7075A16CE90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1BC2F87-C4D8-4895-9127-B7075A16CE90}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1BC2F87-C4D8-4895-9127-B7075A16CE90}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1BC2F87-C4D8-4895-9127-B7075A16CE90}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C79D16A8-95B8-4439-8796-E8E379F3159D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C79D16A8-95B8-4439-8796-E8E379F3159D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C79D16A8-95B8-4439-8796-E8E379F3159D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C79D16A8-95B8-4439-8796-E8E379F3159D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BE9EB8A-A909-43B6-939E-ABF28D16FDA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BE9EB8A-A909-43B6-939E-ABF28D16FDA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BE9EB8A-A909-43B6-939E-ABF28D16FDA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BE9EB8A-A909-43B6-939E-ABF28D16FDA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03C2FAB2-0362-4DD3-8C87-F691C5DA648E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03C2FAB2-0362-4DD3-8C87-F691C5DA648E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03C2FAB2-0362-4DD3-8C87-F691C5DA648E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03C2FAB2-0362-4DD3-8C87-F691C5DA648E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{03C2FAB2-0362-4DD3-8C87-F691C5DA648E} = {6847385C-AF61-4FEA-927D-A38F0FF36365}
 	EndGlobalSection
 EndGlobal

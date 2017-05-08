@@ -1,6 +1,6 @@
 cd 
 
-cd "C:\Sandbox\CHUNKYDIGITS\Chains.UI"
+cd "C:\Sandbox\CHUNKYDIGITS\chains"
 
 start Chains.UI.sln 
 
