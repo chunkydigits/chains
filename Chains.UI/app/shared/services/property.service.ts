@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 import { PropertyInformation } from '../models/property';
 
 const propertyItems: PropertyInformation[] = [
@@ -271,8 +274,24 @@ const propertyItems: PropertyInformation[] = [
 @Injectable()
 
 export class PropertyService {
-    getPropertiesForUserId(id: string): PropertyInformation[] {
-        return propertyItems;
+
+    private propertyBaseUrl: string = 'http://localhost:55555/api/Property/';
+
+    constructor(private http: Http) {}
+
+    //getPropertiesForUserId(id: string): PropertyInformation[] {
+    getPropertiesForUserId(id: string): Observable<PropertyInformation[]> {
+        let properties = this.http
+            .get(this.propertyBaseUrl + 'GetProperties?searcherId=null')
+            .map(this.mapDtoToViewModel);
+        console.log(properties);
+        return properties; 
+      //  return propertyItems;
+    }
+
+    private mapDtoToViewModel(res: Response) {
+        console.log(res.json());
+        return res.json() || [];
     }
 
     getPropertyById(id: string): PropertyInformation {

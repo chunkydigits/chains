@@ -19,7 +19,13 @@ let PropertyListComponent = class PropertyListComponent {
         this.addingProperty = false;
     }
     ngOnInit() {
-        this.properties = this.service.getPropertiesForUserId(this.userId);
+        this.getProperties();
+    }
+    getProperties() {
+        this.service.getPropertiesForUserId(this.userId)
+            .subscribe(properties => this.properties = properties, error => this.errorMessage = error);
+        console.log('here are the properties');
+        console.log(this.properties[0].displayName);
     }
     selectProperty(id) {
         if (this.addingProperty) {

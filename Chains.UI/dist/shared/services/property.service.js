@@ -5,8 +5,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
+const http_1 = require("@angular/http");
+require("rxjs/add/operator/map");
 const property_1 = require("../models/property");
 const propertyItems = [
     {
@@ -282,8 +287,22 @@ const propertyItems = [
     }
 ];
 let PropertyService = class PropertyService {
+    constructor(http) {
+        this.http = http;
+        this.propertyBaseUrl = 'http://localhost:55555/api/Property/';
+    }
+    //getPropertiesForUserId(id: string): PropertyInformation[] {
     getPropertiesForUserId(id) {
-        return propertyItems;
+        let properties = this.http
+            .get(this.propertyBaseUrl + 'GetProperties?searcherId=null')
+            .map(this.mapDtoToViewModel);
+        console.log(properties);
+        return properties;
+        //  return propertyItems;
+    }
+    mapDtoToViewModel(res) {
+        console.log(res.json());
+        return res.json() || [];
     }
     getPropertyById(id) {
         console.log('id received by service: ' + id);
@@ -298,7 +317,8 @@ let PropertyService = class PropertyService {
     }
 };
 PropertyService = __decorate([
-    core_1.Injectable()
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
 ], PropertyService);
 exports.PropertyService = PropertyService;
 //# sourceMappingURL=property.service.js.map

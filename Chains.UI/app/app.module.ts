@@ -14,6 +14,7 @@ import { ChainModule } from './shared/modules/chain.module';
 import { PropertyModule } from './shared/modules/property.module';
 import { AuthGuard } from './shared/guards/auth-guard.service';
 import { CanDeactivateGuard } from './shared/guards/can-deactivate-guard.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import { CanDeactivateGuard } from './shared/guards/can-deactivate-guard.service
         FormsModule, 
         appRouting, 
         ChainModule, 
-        PropertyModule
+        PropertyModule, 
+        HttpModule
     ],
     declarations: [
         AppComponent,

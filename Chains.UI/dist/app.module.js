@@ -22,6 +22,7 @@ const chain_module_1 = require("./shared/modules/chain.module");
 const property_module_1 = require("./shared/modules/property.module");
 const auth_guard_service_1 = require("./shared/guards/auth-guard.service");
 const can_deactivate_guard_service_1 = require("./shared/guards/can-deactivate-guard.service");
+const http_1 = require("@angular/http");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -31,7 +32,8 @@ AppModule = __decorate([
             forms_1.FormsModule,
             app_routing_1.appRouting,
             chain_module_1.ChainModule,
-            property_module_1.PropertyModule
+            property_module_1.PropertyModule,
+            http_1.HttpModule
         ],
         declarations: [
             app_component_1.AppComponent,

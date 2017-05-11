@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PropertyInformation } from '../../models/property';
 import { PropertyService } from '../../services/property.service';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
     moduleId: module.id,
@@ -15,11 +16,22 @@ export class PropertyListComponent implements OnInit {
     properties: PropertyInformation[]; 
     activeProperty: PropertyInformation;    
     addingProperty: boolean = false;
+    errorMessage: string;
 
     constructor(private service: PropertyService, private router: Router) { }
 
     ngOnInit() {
-        this.properties = this.service.getPropertiesForUserId(this.userId);
+        this.getProperties();
+    }
+
+    getProperties() {
+        this.service.getPropertiesForUserId(this.userId)
+            .subscribe(
+                properties => this.properties = properties,
+                error => this.errorMessage = error
+            );
+        console.log('here are the properties');
+        console.log(this.properties[0].displayName);
     }
 
     selectProperty(id: string) {
