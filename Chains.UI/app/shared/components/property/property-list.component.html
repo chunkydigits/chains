@@ -1,4 +1,7 @@
 <div class="col-md-3">
+    <div class="row" style="color: red;" *ngIf="!errorMessage">
+        There was an error retrieving the property list
+    </div>
     <div class="row" *ngIf="!addingProperty">
         <button class="btn btn-sm btn-success btn-block"
                 (click)="addProperty()">
@@ -6,7 +9,10 @@
             &nbsp;Add Property
         </button>
     </div>
-    <div class="row" *ngIf="properties">
+    <div *ngIf="loadingProperties">
+        <i class="glyphicon-refresh spin"></i>
+    </div>
+    <div class="row" *ngIf="properties && !loadingProperties">
         <div *ngFor="let property of properties"
              (click)=selectProperty(property.id)
              class="clickable">

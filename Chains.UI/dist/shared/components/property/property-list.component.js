@@ -17,25 +17,27 @@ let PropertyListComponent = class PropertyListComponent {
         this.service = service;
         this.router = router;
         this.addingProperty = false;
+        this.loadingProperties = true;
     }
     ngOnInit() {
         this.getProperties();
     }
     getProperties() {
+        this.errorMessage = null;
         this.service.getPropertiesForUserId(this.userId)
             .subscribe(properties => this.properties = properties, error => this.errorMessage = error);
-        console.log('here are the properties');
-        console.log(this.properties[0].displayName);
+        this.loadingProperties = false;
+        if (this.errorMessage === null)
+            console.log('Properties successfully retrieved');
+        else
+            console.log('Error found when retrieving properties');
     }
     selectProperty(id) {
         if (this.addingProperty) {
             console.log('You can not view a property whilst adding a new property');
             return;
         }
-        this.activeProperty = this.getPropertyInformation(id);
-    }
-    getPropertyInformation(id) {
-        return this.service.getPropertyById(id);
+        this.service.getPropertyById(id).subscribe(property => this.activeProperty = property);
     }
     addProperty() {
         this.addingProperty = true;

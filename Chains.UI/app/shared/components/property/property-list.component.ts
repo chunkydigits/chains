@@ -17,7 +17,7 @@ export class PropertyListComponent implements OnInit {
     activeProperty: PropertyInformation;    
     addingProperty: boolean = false;
     errorMessage: string;
-
+    loadingProperties: boolean = true;
     constructor(private service: PropertyService, private router: Router) { }
 
     ngOnInit() {
@@ -25,13 +25,17 @@ export class PropertyListComponent implements OnInit {
     }
 
     getProperties() {
+        this.errorMessage = null;
         this.service.getPropertiesForUserId(this.userId)
             .subscribe(
                 properties => this.properties = properties,
                 error => this.errorMessage = error
             );
-        console.log('here are the properties');
-        console.log(this.properties[0].displayName);
+        this.loadingProperties = false;
+        if (this.errorMessage === null)
+            console.log('Properties successfully retrieved');
+        else 
+            console.log('Error found when retrieving properties');
     }
 
     selectProperty(id: string) {
@@ -39,11 +43,7 @@ export class PropertyListComponent implements OnInit {
             console.log('You can not view a property whilst adding a new property');
             return;
         }
-        this.activeProperty = this.getPropertyInformation(id);
-    }
-
-    getPropertyInformation(id: string): PropertyInformation {
-        return this.service.getPropertyById(id);
+        this.service.getPropertyById(id).subscribe(property => this.activeProperty = property);
     }
 
     addProperty() {

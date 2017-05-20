@@ -14,14 +14,14 @@ export class PropertyAddComponent {
     @Output() propertyCreated = new EventEmitter();
     @Output() propertyCreateCancelled = new EventEmitter();
     
-    property: PropertyInformation = new PropertyInformation();
+    property: PropertyInformation = new PropertyInformation(null);
 
     constructor(private service: PropertyService) { }
 
     saveProperty() {
         this.service.saveProperty(this.property);
         this.propertyCreated.emit({ property: this.property });
-        this.property = new PropertyInformation();
+        this.property = new PropertyInformation(null);
         console.log('saveProperty');
     }
         
@@ -29,7 +29,7 @@ export class PropertyAddComponent {
         // add-property doesn't appear to be deactivated when clicking here as it is just an illusion of lots deactivation using visuals
         if (this.canDeactivate()) {
             console.log('cancelled adding a property');
-            this.property = new PropertyInformation();
+            this.property = new PropertyInformation(null);
             this.propertyCreateCancelled.emit({ cancelled: true });
             console.log('cancelled');
         }

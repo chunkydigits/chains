@@ -5,3 +5,14 @@ property-list {
 .clickable {
     cursor:pointer;
 }
+
+.spin {
+    border-radius: 50%;
+    -webkit-transition: -webkit-transform .8s ease-in-out;
+    transition:         transform .8s ease-in-out;
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+
+}
+img:hover {
+}

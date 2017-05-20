@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { PropertyInformation } from '../models/property';
 
-const propertyItems: PropertyInformation[] = [
+/*const propertyItems: PropertyInformation[] = [
 {
     id: '1',
     displayName: '3 Crayford Drive, WF4 1SQ',
@@ -269,7 +269,7 @@ const propertyItems: PropertyInformation[] = [
         }],
     rightMoveIdentifier: '1234513'
 }
-];  
+];*/  
 
 @Injectable()
 
@@ -283,20 +283,33 @@ export class PropertyService {
     getPropertiesForUserId(id: string): Observable<PropertyInformation[]> {
         let properties = this.http
             .get(this.propertyBaseUrl + 'GetProperties?searcherId=null')
-            .map(this.mapDtoToViewModel);
+            .map(this.mapDtoToPropertyInformationListViewModel);
         console.log(properties);
         return properties; 
       //  return propertyItems;
     }
 
-    private mapDtoToViewModel(res: Response) {
+    private mapDtoToPropertyInformationListViewModel(res: Response) {
         console.log(res.json());
-        return res.json() || [];
+        return PropertyInformation.fromJSONArray(res.json()) || [];
+    }
+    
+    getPropertyById(id: string): Observable<PropertyInformation> {
+        return this.getPropertiesForUserId(null)
+            .map(properties => properties.find(property => property.id === id));
     }
 
-    getPropertyById(id: string): PropertyInformation {
-        console.log('id received by service: ' + id);
-        return propertyItems.find(propertyInfo => propertyInfo.id === id);
+    private handleError(error: Response | any) {
+        let errorMessage: string;
+
+        errorMessage = error.message ? error.message : error.toString();
+
+        console.log('ERROR MESSAGE: ' + errorMessage);
+        // In real world application, call to log error to remote server
+        // logError(error);
+
+        // This returns another Observable for the observer to subscribe to
+        return Observable.throw(errorMessage);
     }
 
     saveProperty(property: PropertyInformation) {
@@ -305,6 +318,6 @@ export class PropertyService {
     }
 
     getNewProperty(): PropertyInformation {
-        return new PropertyInformation();
+        return new PropertyInformation(null);
     }
 }
