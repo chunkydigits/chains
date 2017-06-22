@@ -14,10 +14,18 @@ namespace Chains.API.Models
     
     public partial class PublicUser
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PublicUser()
+        {
+            this.CustomDefaultCheckLists = new HashSet<CustomDefaultCheckList>();
+        }
+    
         public System.Guid Id { get; set; }
         public string Name { get; set; }
         public System.Guid PublicUserTypeId { get; set; }
     
         public virtual PublicUserType PublicUserType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomDefaultCheckList> CustomDefaultCheckLists { get; set; }
     }
 }

@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Chains.API.Models;
+using Chains.API.Models.ViewModels;
 
 namespace Chains.API.Repositories
 {
     public interface IPropertyRepository
     {
-        List<Property> GetAllProperties();
+        List<PropertyInformationViewModel> GetAllProperties();
+        List<PropertyCheckListitem> GetCheckListItemsForProperty(Guid id);
     }
 }

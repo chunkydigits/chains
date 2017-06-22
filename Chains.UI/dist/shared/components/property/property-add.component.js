@@ -17,19 +17,19 @@ let PropertyAddComponent = class PropertyAddComponent {
         this.service = service;
         this.propertyCreated = new core_1.EventEmitter();
         this.propertyCreateCancelled = new core_1.EventEmitter();
-        this.property = new property_1.PropertyInformation(null);
+        this.property = new property_1.PropertyInformation({ "Id": "NEW" });
     }
     saveProperty() {
         this.service.saveProperty(this.property);
         this.propertyCreated.emit({ property: this.property });
-        this.property = new property_1.PropertyInformation(null);
+        this.property = new property_1.PropertyInformation({ "Id": "NEW" });
         console.log('saveProperty');
     }
     cancelAddProperty() {
         // add-property doesn't appear to be deactivated when clicking here as it is just an illusion of lots deactivation using visuals
         if (this.canDeactivate()) {
             console.log('cancelled adding a property');
-            this.property = new property_1.PropertyInformation(null);
+            this.property = new property_1.PropertyInformation({ "Id": "NEW" });
             this.propertyCreateCancelled.emit({ cancelled: true });
             console.log('cancelled');
         }

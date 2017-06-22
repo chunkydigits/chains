@@ -315,6 +315,7 @@ export class PropertyService {
     saveProperty(property: PropertyInformation) {
         console.log(property.id + ' saved');
         console.log(property.displayName + ' as address');
+        //this.http.post()
     }
 
     getNewProperty(): PropertyInformation {

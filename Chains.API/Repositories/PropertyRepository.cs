@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Chains.API.Models;
+using Chains.API.Models.ViewModels;
 
 namespace Chains.API.Repositories
 {
@@ -14,12 +16,26 @@ namespace Chains.API.Repositories
             _databaseRepository = databaseRepository;
         }
 
-        public List<Property> GetAllProperties()
+        public List<PropertyInformationViewModel> GetAllProperties()
         {
             using (var context = new ChainsDBEntities())
             {
-                var x = _databaseRepository.GetAllProperties(context);
-                return x;
+                var returnList = new List<PropertyInformationViewModel>();
+                var propertyList = _databaseRepository.GetAllProperties(context);
+
+                propertyList.ForEach(o => 
+                {
+                   returnList.Add(Mapper.Map<PropertyInformationViewModel>((Property)o)); 
+                });
+                return returnList;
+            }
+        }
+
+        public List<PropertyCheckListitem> GetCheckListItemsForProperty(Guid propertyId)
+        {
+            using (var context = new ChainsDBEntities())
+            {
+                return _databaseRepository.GetCheckListItemsForProperty(context, propertyId);
             }
         }
     }

@@ -12,27 +12,21 @@ namespace Chains.API.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Property
+    public partial class CheckListItem
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Property()
+        public CheckListItem()
         {
+            this.CustomDefaultCheckListItems = new HashSet<CustomDefaultCheckListItem>();
             this.PropertyCheckListitems = new HashSet<PropertyCheckListitem>();
         }
     
         public System.Guid Id { get; set; }
         public string DisplayName { get; set; }
-        public string AddressLine1 { get; set; }
-        public string AddressLine2 { get; set; }
-        public string AddressLine3 { get; set; }
-        public string AddressLine4 { get; set; }
-        public string AddressLine5 { get; set; }
-        public string Postcode { get; set; }
-        public System.Guid SellerCodeId { get; set; }
-        public System.Guid BuyerCodeId { get; set; }
-        public System.DateTime DateAdded { get; set; }
-        public string RightMoveIdentifier { get; set; }
+        public string Details { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomDefaultCheckListItem> CustomDefaultCheckListItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PropertyCheckListitem> PropertyCheckListitems { get; set; }
     }

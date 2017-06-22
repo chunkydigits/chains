@@ -9,7 +9,12 @@ namespace Chains.API.Repositories
     {
         public List<Property> GetAllProperties(ChainsDBEntities context)
         {
-            return context.Properties.ToList();
+            return context.Properties/*.Include("PropertyCheckListitems").Include("PropertyCheckListitems.CheckListItem")*/.ToList();
+        }
+
+        public List<PropertyCheckListitem> GetCheckListItemsForProperty(ChainsDBEntities context, Guid propertyId)
+        {
+            return context.PropertyCheckListitems.Where(o => o.PropertyId == propertyId).ToList();
         }
     }
 }

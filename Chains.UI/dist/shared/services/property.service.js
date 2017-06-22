@@ -314,6 +314,7 @@ let PropertyService = class PropertyService {
     saveProperty(property) {
         console.log(property.id + ' saved');
         console.log(property.displayName + ' as address');
+        //this.http.post()
     }
     getNewProperty() {
         return new property_1.PropertyInformation(null);

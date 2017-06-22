@@ -23,6 +23,15 @@
         <AssociationConnector Association="ChainsDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
         <AssociationConnector Association="ChainsDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="ChainsDBModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ChainsDBModel.CheckListItem" Width="1.5" PointX="6" PointY="10.625" />
+        <EntityTypeShape EntityType="ChainsDBModel.CustomDefaultCheckList" Width="1.5" PointX="6" PointY="13.75" />
+        <EntityTypeShape EntityType="ChainsDBModel.CustomDefaultCheckListItem" Width="1.5" PointX="8.25" PointY="10.625" />
+        <EntityTypeShape EntityType="ChainsDBModel.PropertyCheckListitem" Width="1.5" PointX="8.25" PointY="6.375" />
+        <AssociationConnector Association="ChainsDBModel.FK_CustomDefaultCheckListItem_CheckListItem" />
+        <AssociationConnector Association="ChainsDBModel.FK_PropertyCheckListitem_CheckListItem" />
+        <AssociationConnector Association="ChainsDBModel.FK_CustomDefaultCheckList_PublicUser" />
+        <AssociationConnector Association="ChainsDBModel.FK_CustomDefaultCheckListItem_CustomDefaultCheckListItem" />
+        <AssociationConnector Association="ChainsDBModel.FK_PropertyCheckListitem_Property" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
