@@ -1,1 +1,0 @@
-WARN  2017-06-22 22:00:48,733 46574ms PropertyController     GetProperties      - GetProperties: Not managed to retrieve properties for the searcherId: <NULL>

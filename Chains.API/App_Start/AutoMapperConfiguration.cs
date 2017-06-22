@@ -13,7 +13,7 @@ namespace Chains.API.App_Start
         public static void Configure()
         {
             Mapper.Initialize(cfg => cfg.CreateMap<Property, PropertyInformationViewModel>()
-                                    .ForSourceMember(src => src.PropertyCheckListitems, dest => dest.Ignore()));
+                                    .ForMember(src => src.PropertyCheckListitems, dest => dest.Ignore()));
            /* Mapper.Initialize(cfg => cfg.CreateMap<PropertyCheckListitem, PropertyCheckListItemViewModel>()
                                     .ForSourceMember(src => src.Property, dest => dest.Ignore()));
             Mapper.Initialize(cfg => cfg.CreateMap<CheckListItem, CheckListItemViewModel>()
