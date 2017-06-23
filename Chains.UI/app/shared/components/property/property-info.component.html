@@ -1,15 +1,30 @@
 <div class="col-md-9">
     <div class="row" *ngIf="property">
-        {{property.displayName}}
-        {{property.id}}
-        <chain-visualisation [propertyId]="property.id"></chain-visualisation>
-        <div class="col-md-12">
-            <div class="input-group" *ngFor="let checkListItem of property.checkListItems">
-                
+        <h1>{{property.displayName}}</h1>
+        <div class="col-md-12">{{property.rightMoveIdentifier}}</div>
+        <div class="tab-pane">
+            <div class="col-md-12">
+                <h2>Full Address: </h2>
+                {{property.addressLine1}}
+                {{property.addressLine2}}
+                {{property.addressLine3}}
+                {{property.addressLine4}}
+                {{property.addressLine5}}
+                {{property.postcode}}
+            </div>
+            <div class="col-md-12">
+                <h2>Chain Visualisation</h2>
+                <chain-visualisation [propertyId]="property.id"></chain-visualisation>
+            </div>
+            <div class="col-md-12">
+                <h2>Check List Items</h2>
+                <div class="input-group" *ngFor="let checkListItem of property.checkListItems">
+                    Check list item
+                </div>
             </div>
         </div>
     </div>
     <div class="row" *ngIf="!property">
-        <<<<<< Click on the property to see information about it. 
+        <<<<<< Click on the property to see information about it.
     </div>
 </div>
