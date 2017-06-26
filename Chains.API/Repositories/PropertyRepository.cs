@@ -25,7 +25,13 @@ namespace Chains.API.Repositories
 
                 propertyList.ForEach(o => 
                 {
-                   returnList.Add(Mapper.Map<PropertyInformationViewModel>((Property)o)); 
+                    var property = Mapper.Map<PropertyInformationViewModel>((Property)o);
+                    foreach (var checkListitem in o.PropertyCheckListitems)
+                    {
+                        property.PropertyCheckListitems.Add(new PropertyCheckListItemViewModel(checkListitem));
+                    }
+                    returnList.Add(property);
+
                 });
                 return returnList;
             }

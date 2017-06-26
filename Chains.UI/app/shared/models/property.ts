@@ -12,6 +12,18 @@ export class PropertyInformation {
         this.addressLine4 = obj['AddressLine4'];
         this.addressLine5 = obj['AddressLine5'];
         this.postcode = obj['Postcode'];
+
+
+        var x = obj['PropertyCheckListitems'];
+        this.propertyCheckListItems = new Array<CheckListItem>();
+
+        var iterator: number;
+        iterator = 0; 
+        
+        x.forEach(element => {
+            this.propertyCheckListItems[iterator] = new CheckListItem(element);
+            iterator++;    
+        });
     }
 
     id: string;
@@ -33,7 +45,7 @@ export class PropertyInformation {
     status: number; // could use some sort of enum here. 
     type: number; // 1 - start ready, 2 - start not ready, 3 - end ready, 4 - end not ready, 5 - property node
     totalPropertiesInChain: number;
-    checkListItems: CheckListItem[];
+    propertyCheckListItems: CheckListItem[];
 
     static fromJSONArray(array: Array<Object>) : PropertyInformation[] {
         return array.map(obj => new PropertyInformation(obj));
