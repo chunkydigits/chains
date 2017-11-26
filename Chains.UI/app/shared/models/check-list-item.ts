@@ -15,5 +15,5 @@ export class CheckListItem {
     completedDate: Date;
     completed: boolean;
     created: Date;
-    completedUserId: string;    
+    completedUserId: string;
 }
