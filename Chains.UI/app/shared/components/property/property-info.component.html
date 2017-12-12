@@ -18,8 +18,12 @@
             </div>
             <div class="col-md-12">
                 <h2>Check List Items</h2>
-                <div class="input-group" *ngFor="let checkListItem of property.propertyCheckListItems">
-                    {{checkListItem.displayName}}
+                <div class="input-group col-md-12" *ngFor="let checkListItem of property.propertyCheckListItems">
+                    <div class="col-md-4">{{checkListItem.displayName}}</div>
+                    <div class="col-md-2">
+                        <input type="checkbox" [(ngModel)]="checkListItem.completed" disabled="disabled"/>
+                    </div>
+                    <div class="col-md-6" *ngIf="checkListItem.completed">Completed on {{checkListItem.completedDate | date: 'dd/MM/yyyy'}} <span *ngIf="checkListItem.completedUserId"> by user with ID {{checkListItem.completedUserId}}</span></div>
                 </div>
             </div>
         </div>
@@ -27,4 +31,5 @@
     <div class="row" *ngIf="!property">
         <<<<<< Click on the property to see information about it.
     </div>
+    <div class="page-bottom-spacer"></div>
 </div>

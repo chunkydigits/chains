@@ -20,6 +20,9 @@ export class PropertyInformation {
         var iterator: number;
         iterator = 0; 
         
+        if(this.propertyCheckListItems.length === 0)
+            return;
+
         x.forEach(element => {
             this.propertyCheckListItems[iterator] = new CheckListItem(element);
             iterator++;    

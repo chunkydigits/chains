@@ -17,6 +17,7 @@ let PropertyListComponent = class PropertyListComponent {
         this.service = service;
         this.router = router;
         this.addingProperty = false;
+        this.editingProperty = false;
         this.loadingProperties = true;
     }
     ngOnInit() {
@@ -41,6 +42,10 @@ let PropertyListComponent = class PropertyListComponent {
     }
     addProperty() {
         this.addingProperty = true;
+    }
+    editProperty(id) {
+        this.editingProperty = true;
+        this.selectProperty(id);
     }
     newPropertyCreated(event) {
         console.log('newPropertyCreated Event Fired');

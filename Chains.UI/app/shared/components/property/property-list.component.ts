@@ -16,6 +16,7 @@ export class PropertyListComponent implements OnInit {
     properties: PropertyInformation[]; 
     activeProperty: PropertyInformation;    
     addingProperty: boolean = false;
+    editingProperty: boolean = false;
     errorMessage: string;
     loadingProperties: boolean = true;
     constructor(private service: PropertyService, private router: Router) { }
@@ -48,6 +49,11 @@ export class PropertyListComponent implements OnInit {
 
     addProperty() {
         this.addingProperty = true;
+    }
+    
+    editProperty(id:string) {
+        this.editingProperty = true;
+        this.selectProperty(id);
     }
 
     newPropertyCreated(event) {

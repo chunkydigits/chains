@@ -2,7 +2,7 @@ cd
 
 cd "C:\Sandbox\CHUNKYDIGITS\chains"
 
-start Chains.UI.sln 
+::start Chains.UI.sln 
 
 cd "Chains.UI"
 

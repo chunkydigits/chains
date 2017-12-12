@@ -17,6 +17,8 @@ class PropertyInformation {
         this.propertyCheckListItems = new Array();
         var iterator;
         iterator = 0;
+        if (this.propertyCheckListItems.length === 0)
+            return;
         x.forEach(element => {
             this.propertyCheckListItems[iterator] = new check_list_item_1.CheckListItem(element);
             iterator++;

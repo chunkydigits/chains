@@ -5,8 +5,8 @@ class CheckListItem {
         this.id = obj['Id'];
         this.displayName = obj['DisplayName'];
         this.details = obj['Details'];
-        //this.reason = obj['Reason'];
-        this.completed = obj['DateCompleted'];
+        this.completedDate = obj['Completed'];
+        this.completed = this.completedDate !== null && typeof (this.completedDate) !== 'undefined';
         this.created = obj['Created'];
         this.completedUserId = obj['CompletedUserId'];
     }
