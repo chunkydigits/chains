@@ -8,15 +8,6 @@ import { ChainVisualisationComponent } from './shared/components/chain-visualisa
 const appRoutes:Routes = [
     { path: '', component: HomeComponent },
     {
-        path: 'secretAbout',
-        redirectTo: '/about',
-        pathMatch: 'full'
-    },
-    {
-        path: 'about',
-        loadChildren: 'app/about/about.module#AboutModule'
-    },
-    {
         path: 'estate-agent',
         loadChildren: 'app/estate-agent/estate-agent.module#EstateAgentModule'
     },
