@@ -10,14 +10,7 @@ const core_1 = require("@angular/core");
 const forms_1 = require("@angular/forms");
 const common_1 = require("@angular/common");
 const about_component_1 = require("./about.component");
-const about_user_component_1 = require("./about-user.component");
-const userprofile_component_1 = require("../users/userprofile.component");
-const userform_component_1 = require("../users/userform.component");
-const about_section_component_1 = require("./about-section.component");
-const user_service_1 = require("../shared/services/user.service");
 const about_routing_1 = require("./about.routing");
-const about_resolve_service_1 = require("./about-resolve.service");
-const about_user_resolve_service_1 = require("./about-user-resolve.service");
 let AboutModule = class AboutModule {
 };
 AboutModule = __decorate([
@@ -28,16 +21,7 @@ AboutModule = __decorate([
             about_routing_1.aboutRouting
         ],
         declarations: [
-            about_component_1.AboutComponent,
-            about_user_component_1.AboutUserComponent,
-            userprofile_component_1.UserProfileComponent,
-            userform_component_1.UserFormComponent,
-            about_section_component_1.AboutSectionComponent
-        ],
-        providers: [
-            user_service_1.UserService,
-            about_resolve_service_1.AboutUsersResolve,
-            about_user_resolve_service_1.AboutUserResolve
+            about_component_1.AboutComponent
         ]
     })
 ], AboutModule);

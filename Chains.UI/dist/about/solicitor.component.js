@@ -7,12 +7,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-let AboutComponent = class AboutComponent {
+let SolicitorComponent = class SolicitorComponent {
 };
-AboutComponent = __decorate([
+SolicitorComponent = __decorate([
     core_1.Component({
-        selector: 'about-page',
-        templateUrl: './app/about/about.component.html',
+        selector: 'solicitor-page',
+        templateUrl: './app/solicitor/solicitor.component.html',
         styles: [`
         .page { 
             background-color:white;
@@ -20,6 +20,6 @@ AboutComponent = __decorate([
         }
     `]
     })
-], AboutComponent);
-exports.AboutComponent = AboutComponent;
-//# sourceMappingURL=about.component.js.map
+], SolicitorComponent);
+exports.SolicitorComponent = SolicitorComponent;
+//# sourceMappingURL=solicitor.component.js.map

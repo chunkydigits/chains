@@ -7,19 +7,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-let AboutComponent = class AboutComponent {
+const forms_1 = require("@angular/forms");
+const common_1 = require("@angular/common");
+const solicitor_component_1 = require("./solicitor.component");
+const solicitor_routing_1 = require("./solicitor.routing");
+let SolicitorModule = class SolicitorModule {
 };
-AboutComponent = __decorate([
-    core_1.Component({
-        selector: 'about-page',
-        templateUrl: './app/about/about.component.html',
-        styles: [`
-        .page { 
-            background-color:white;
-            text-align:center;
-        }
-    `]
+SolicitorModule = __decorate([
+    core_1.NgModule({
+        imports: [
+            common_1.CommonModule,
+            forms_1.FormsModule,
+            solicitor_routing_1.solicitorRouting
+        ],
+        declarations: [
+            solicitor_component_1.SolicitorComponent
+        ]
     })
-], AboutComponent);
-exports.AboutComponent = AboutComponent;
-//# sourceMappingURL=about.component.js.map
+], SolicitorModule);
+exports.SolicitorModule = SolicitorModule;
+//# sourceMappingURL=abotu.module.js.map

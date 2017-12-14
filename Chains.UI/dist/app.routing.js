@@ -7,6 +7,10 @@ const not_found_component_1 = require("./not-found/not-found.component");
 const appRoutes = [
     { path: '', component: home_component_1.HomeComponent },
     {
+        path: 'about',
+        loadChildren: 'app/about/about.module#AboutModule'
+    },
+    {
         path: 'estate-agent',
         loadChildren: 'app/estate-agent/estate-agent.module#EstateAgentModule'
     },

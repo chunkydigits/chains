@@ -5,8 +5,12 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ChainVisualisationComponent } from './shared/components/chain-visualisation/chain-visualisation.component';
 
-const appRoutes:Routes = [
+const appRoutes: Routes = [
     { path: '', component: HomeComponent },
+    {
+        path: 'about',
+        loadChildren: 'app/about/about.module#AboutModule'
+    },
     {
         path: 'estate-agent',
         loadChildren: 'app/estate-agent/estate-agent.module#EstateAgentModule'
