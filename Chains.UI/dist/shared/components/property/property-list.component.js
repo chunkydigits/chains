@@ -50,6 +50,7 @@ let PropertyListComponent = class PropertyListComponent {
     newPropertyCreated(event) {
         console.log('newPropertyCreated Event Fired');
         this.properties.push(event.property);
+        //this.service.saveProperty(event.property);
         this.addingProperty = false;
     }
     newPropertyCreateCancelled(event) {

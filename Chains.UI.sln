@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chains.UI", "Chains.UI\Chains.UI.csproj", "{5BF8030C-4873-4699-A9D2-B6430B15FEBF}"
 EndProject
@@ -25,7 +25,6 @@ Global
 		{5BE9EB8A-A909-43B6-939E-ABF28D16FDA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BE9EB8A-A909-43B6-939E-ABF28D16FDA0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03C2FAB2-0362-4DD3-8C87-F691C5DA648E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03C2FAB2-0362-4DD3-8C87-F691C5DA648E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03C2FAB2-0362-4DD3-8C87-F691C5DA648E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03C2FAB2-0362-4DD3-8C87-F691C5DA648E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
@@ -34,5 +33,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{03C2FAB2-0362-4DD3-8C87-F691C5DA648E} = {6847385C-AF61-4FEA-927D-A38F0FF36365}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1CE78D7E-981E-4AC4-B3FF-528D68DCBAAA}
 	EndGlobalSection
 EndGlobal

@@ -13,6 +13,7 @@ using System.Reflection;
 
 namespace Chains.API.Controllers
 {
+    [RoutePrefix("api/property")]
     public class PropertyController : ApiController
     {
         private readonly IPropertyRepository _propertyRepository;
@@ -36,6 +37,7 @@ namespace Chains.API.Controllers
         }
 
         [HttpGet]
+        [Route("property-list")]
         public List<PropertyInformationViewModel> GetProperties(Guid? searcherId)
         {
             try
@@ -51,7 +53,8 @@ namespace Chains.API.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        [Route("create")]
+        public void Post(PropertyInformationViewModel property)
         {
             throw new NotImplementedException();
         }
