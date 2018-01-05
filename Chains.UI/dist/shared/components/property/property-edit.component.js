@@ -10,26 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-const property_1 = require("../../models/property");
 const property_service_1 = require("../../services/property.service");
 let PropertyEditComponent = class PropertyEditComponent {
     constructor(service) {
         this.service = service;
         this.propertySaved = new core_1.EventEmitter();
         this.propertyEditCancelled = new core_1.EventEmitter();
-        this.property = new property_1.PropertyInformation({ "Id": "NEW" });
+        this.property = { "Id": "NEW" };
     }
     saveProperty() {
         this.service.saveProperty(this.property);
         this.propertySaved.emit({ property: this.property });
-        this.property = new property_1.PropertyInformation({ "Id": "NEW" });
+        this.property = { "Id": "NEW" };
         console.log('saveProperty');
     }
     cancelAddProperty() {
         // add-property doesn't appear to be deactivated when clicking here as it is just an illusion of lots deactivation using visuals
         if (this.canDeactivate()) {
             console.log('cancelled adding a property');
-            this.property = new property_1.PropertyInformation({ "Id": "NEW" });
+            this.property = { "Id": "NEW" };
             this.propertyEditCancelled.emit({ cancelled: true });
             console.log('cancelled');
         }

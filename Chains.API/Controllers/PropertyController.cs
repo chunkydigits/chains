@@ -54,7 +54,8 @@ namespace Chains.API.Controllers
 
         // POST api/values
         [Route("create")]
-        public void Post(PropertyInformationViewModel property)
+        [HttpPost]
+        public void Post([FromBody]PropertyInformationViewModel property)
         {
             throw new NotImplementedException();
         }

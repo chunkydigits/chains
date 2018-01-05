@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-const property_1 = require("../../models/property");
 let PropertyInfoComponent = class PropertyInfoComponent {
     constructor() {
         this.selectedPropertyId = '1';
@@ -18,7 +17,7 @@ let PropertyInfoComponent = class PropertyInfoComponent {
 };
 __decorate([
     core_1.Input(),
-    __metadata("design:type", property_1.PropertyInformation)
+    __metadata("design:type", Object)
 ], PropertyInfoComponent.prototype, "property", void 0);
 PropertyInfoComponent = __decorate([
     core_1.Component({

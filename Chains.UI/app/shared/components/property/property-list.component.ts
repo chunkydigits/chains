@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PropertyInformation } from '../../models/property';
 import { PropertyService } from '../../services/property.service';
 import { Observable } from 'rxjs/Rx';
 
@@ -13,8 +12,8 @@ import { Observable } from 'rxjs/Rx';
 
 export class PropertyListComponent implements OnInit {
     @Input() userId: string;
-    properties: PropertyInformation[]; 
-    activeProperty: PropertyInformation;    
+    properties: any[]; 
+    activeProperty: any;    
     addingProperty: boolean = false;
     editingProperty: boolean = false;
     errorMessage: string;

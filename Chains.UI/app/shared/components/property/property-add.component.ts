@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PropertyInformation } from '../../models/property';
 import { PropertyService } from '../../services/property.service';
 
 @Component({
@@ -14,14 +13,15 @@ export class PropertyAddComponent {
     @Output() propertyCreated = new EventEmitter();
     @Output() propertyCreateCancelled = new EventEmitter();
     
-    property: PropertyInformation = new PropertyInformation({"Id" : "NEW"});
+    property: any = {"Id" : "NEW"};
 
     constructor(private service: PropertyService) { }
 
     saveProperty() {
+        debugger;
         this.service.saveProperty(this.property);
         this.propertyCreated.emit({ property: this.property });
-        this.property = new PropertyInformation({"Id": "NEW"});
+        this.property = {"Id" : "NEW"};
         console.log('saveProperty');
     }
         
@@ -29,7 +29,7 @@ export class PropertyAddComponent {
         // add-property doesn't appear to be deactivated when clicking here as it is just an illusion of lots deactivation using visuals
         if (this.canDeactivate()) {
             console.log('cancelled adding a property');
-            this.property = new PropertyInformation({"Id" : "NEW"});
+            this.property = {"Id" : "NEW"};
             this.propertyCreateCancelled.emit({ cancelled: true });
             console.log('cancelled');
         }

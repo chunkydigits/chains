@@ -13,11 +13,12 @@ const core_1 = require("@angular/core");
 const http_1 = require("@angular/http");
 const Rx_1 = require("rxjs/Rx");
 require("rxjs/add/operator/map");
-const property_1 = require("../models/property");
 let PropertyService = class PropertyService {
     constructor(http) {
         this.http = http;
         this.propertyBaseUrl = 'http://localhost:55555/api/property/';
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.options = new http_1.RequestOptions({ headers: this.headers });
     }
     getPropertiesForUserId(id) {
         let properties = this.http.get(this.propertyBaseUrl + 'property-list?searcherId=null')
@@ -30,19 +31,21 @@ let PropertyService = class PropertyService {
             .map(properties => properties.find(property => property.id === id));
     }
     saveProperty(property) {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        console.log('In the saveProperty method within the PropertyService');
-        // return this.http
-        //     .post(this.propertyBaseUrl + 'create', property)
-        //     .map(this.extractData)
-        //     .catch(this.handleErrorObservable);
+        let body = JSON.stringify(property);
+        debugger;
+        console.log("Body of Request:", body);
+        return this.http
+            .post(this.propertyBaseUrl + 'create', body, this.options)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleErrorObservable);
     }
     getNewProperty() {
-        return new property_1.PropertyInformation(null);
+        return { "Id": "NEW" };
     }
     mapDtoToPropertyInformationListViewModel(res) {
         console.log(res.json());
-        return property_1.PropertyInformation.fromJSONArray(res.json()) || [];
+        return res.json() || [];
     }
     extractData(res) {
         debugger;

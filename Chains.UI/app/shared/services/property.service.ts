@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
-import { PropertyInformation } from '../models/property';
 
 @Injectable()
 
@@ -10,36 +9,44 @@ export class PropertyService {
 
     private propertyBaseUrl: string = 'http://localhost:55555/api/property/';
 
-    constructor(private http: Http) { }
+    headers: Headers;
+    options: RequestOptions;
 
-    getPropertiesForUserId(id: string): Observable<PropertyInformation[]> {
+    constructor(private http: Http) {
+        this.headers = new Headers({ 'Content-Type': 'application/json' });
+        this.options = new RequestOptions({ headers: this.headers });
+    }
+
+    getPropertiesForUserId(id: string): Observable<any[]> {
         let properties = this.http.get(this.propertyBaseUrl + 'property-list?searcherId=null')
             .map(this.mapDtoToPropertyInformationListViewModel);
         console.log(properties);
         return properties;
     }
     
-    getPropertyById(id: string): Observable<PropertyInformation> {
+    getPropertyById(id: string): Observable<any> {
         return this.getPropertiesForUserId(null)
             .map(properties => properties.find(property => property.id === id));
     }
 
-    saveProperty(property: PropertyInformation) {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        console.log('In the saveProperty method within the PropertyService');
-        // return this.http
-        //     .post(this.propertyBaseUrl + 'create', property)
-        //     .map(this.extractData)
-        //     .catch(this.handleErrorObservable);
+    saveProperty(property: any) {
+        let body = JSON.stringify(property); 
+        debugger;
+        console.log("Body of Request:", body);
+        return this.http
+            .post(this.propertyBaseUrl + 'create', body, this.options)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleErrorObservable);
     }
 
-    getNewProperty(): PropertyInformation {
-        return new PropertyInformation(null);
+    getNewProperty() {
+        return {"Id": "NEW"};
     }
 
     private mapDtoToPropertyInformationListViewModel(res: Response) {
         console.log(res.json());
-        return PropertyInformation.fromJSONArray(res.json()) || [];
+        return res.json() || [];
     }
 
     private extractData(res: Response) {

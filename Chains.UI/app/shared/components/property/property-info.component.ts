@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PropertyInformation } from '../../models/property';
 import { PropertyService } from '../../services/property.service';
 
 @Component({
@@ -11,6 +10,6 @@ import { PropertyService } from '../../services/property.service';
 })
 
 export class PropertyInfoComponent {
-    @Input() property: PropertyInformation;     
+    @Input() property: any;     
     selectedPropertyId: string = '1';
 } 

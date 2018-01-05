@@ -8,7 +8,7 @@
                        name="displayName"
                        required
                        placeholder="Display Address"
-                       [(ngModel)]="property.displayName"
+                       [(ngModel)]="property.DisplayName"
                        #displayName="ngModel">
                 <span class="help-block" *ngIf="displayName.invalid && displayName.touched">The Display Address is required</span>
             </div>
@@ -18,7 +18,7 @@
                        name="rightMoveIdentifier"
                        required
                        placeholder="RightMove ID"
-                       [(ngModel)]="property.rightMoveIdentifier"
+                       [(ngModel)]="property.RightMoveIdentifier"
                        #rightMoveIdentifier="ngModel">
                 <span class="help-block" *ngIf="rightMoveIdentifier.invalid && rightMoveIdentifier.touched">The RightMove ID is required</span>
             </div>
@@ -26,7 +26,7 @@
                 <input type="checkbox"
                        class="form-control"
                        name="startOfChain"
-                       [(ngModel)]="property.startOfChain"
+                       [(ngModel)]="property.StartOfChain"
                        #startOfChain="ngModel">
                 <span class="help-block">If the property is being sold and no property is being purchased with the proceeds or the seller is willing to move into rented accomodation to accomodate a swift sale.</span>
             </div>
@@ -34,7 +34,7 @@
                 <input type="checkbox"
                        class="form-control"
                        name="endOfChain"
-                       [(ngModel)]="property.endOfChain"
+                       [(ngModel)]="property.EndOfChain"
                        #endOfChain="ngModel">
                 <span class="help-block">If the property is being purchased and no property is needed to be sold to accomodate a the sale.</span>
             </div>
