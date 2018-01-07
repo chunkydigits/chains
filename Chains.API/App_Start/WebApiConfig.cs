@@ -21,8 +21,8 @@ namespace Chains.API
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            var corsAttr = new EnableCorsAttribute("http://localhost:3000", "*", "*");
-            config.EnableCors(corsAttr);
+            var corsAttr = new EnableCorsAttribute("http://localhost:3001", "*", "*");
+            //config.EnableCors(corsAttr);
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
