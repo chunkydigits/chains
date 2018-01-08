@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Chains.API.Models.ViewModels;
 using log4net;
 using System.Reflection;
+using System.Web;
 
 namespace Chains.API.Controllers
 {
@@ -55,9 +56,9 @@ namespace Chains.API.Controllers
         // POST api/values
         [Route("create")]
         [HttpPost]
-        public void Post([FromBody]PropertyInformationViewModel property)
+        public bool Post([FromBody]PropertyInformationViewModel property)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         // PUT api/values/5

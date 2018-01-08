@@ -1,1 +1,0 @@
-{"version":3,"file":"welcome-message.component.js","sourceRoot":"","sources":["../../app/home/welcome-message.component.ts"],"names":[],"mappings":";;;;;;;;AAAA,wCAA0C;AAY1C,IAAa,uBAAuB,GAApC;CAEC,CAAA;AAFY,uBAAuB;IAVnC,gBAAS,CAAC;QACP,QAAQ,EAAE,iBAAiB;QAC3B,QAAQ,EAAE;;;;;KAKT;KACJ,CAAC;GAEW,uBAAuB,CAEnC;AAFY,0DAAuB"}

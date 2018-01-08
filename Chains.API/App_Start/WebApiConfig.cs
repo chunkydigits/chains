@@ -24,7 +24,7 @@ namespace Chains.API
             var corsAttr = new EnableCorsAttribute("http://localhost:3001", "*", "*");
             //config.EnableCors(corsAttr);
 
-            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/plain"));
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

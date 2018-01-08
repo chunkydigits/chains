@@ -13,7 +13,7 @@ export class PropertyService {
     options: RequestOptions;
 
     constructor(private http: Http) {
-        this.headers = new Headers({ 'Content-Type': 'application/json' });
+        this.headers = new Headers({ 'Content-Type': 'text/plain' });
         this.options = new RequestOptions({ headers: this.headers });
     }
 
@@ -30,7 +30,17 @@ export class PropertyService {
     }
 
     saveProperty(property: any) {
-        let body = JSON.stringify(property); 
+        let body = JSON.stringify({"Id":null,"DisplayName":"kjdhfksjfhksjdfh","RightMoveIdentifier":"23203984209384","StartOfChain":true,"EndOfChain":true,
+        "AddressLine1":"laksjdlaksjd",
+        "AddressLine2":"ldkfg", 
+        "AddressLine3":"pldfkjdfmn", 
+        "AddressLine4":"nnnvnv", 
+        "AddressLine5":"kkkkd", 
+        "Postcode":"WF4 1SS", 
+        "SellerCodeId":null, 
+        "BuyerCodeId":null, 
+        "DateAdded":"2018-01-05 18:11:21.123",
+        "PropertyCheckListItemViewModel": []}); 
         debugger;
         console.log("Body of Request:", body);
         return this.http
