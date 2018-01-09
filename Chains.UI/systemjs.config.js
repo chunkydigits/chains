@@ -25,6 +25,7 @@
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
             'angular2-uuid': 'npm:angular2-uuid', 
+            // 'auth0-lock':'npm:auth0-lock/lib/index.js',
             'auth0-lock':'npm:auth0-js/build/auth0.min.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension

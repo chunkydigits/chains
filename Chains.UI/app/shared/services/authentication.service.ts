@@ -20,8 +20,7 @@ export class AuthenticationService {
         scope: 'openid profile'
       }
     },
-    autoclose: true,
-    oidcConformant: true,
+    autoclose: true
   };
 
   lock = new Auth0Lock(

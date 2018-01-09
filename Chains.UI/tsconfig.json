@@ -1,14 +1,19 @@
 {
     "compilerOptions": {
-        "target": "es6",
+        "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
         "sourceMap": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "lib": [ "es2015", "dom" ],
+        "lib": [
+            "es2016",
+            "dom", 
+            "es5"
+        ],
         "removeComments": false,
         "noImplicitAny": false,
-        "outDir": "dist"
+        "outDir": "dist",
+        "allowSyntheticDefaultImports": true
     }
 }
