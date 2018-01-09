@@ -9,5 +9,4 @@ import { InfoTileComponent } from '../shared/components/info-tile.component';
 })
 
 export class HomeComponent {
-
 }

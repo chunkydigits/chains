@@ -15,6 +15,8 @@ import { PropertyModule } from './shared/modules/property.module';
 import { AuthGuard } from './shared/guards/auth-guard.service';
 import { CanDeactivateGuard } from './shared/guards/can-deactivate-guard.service';
 import { HttpModule } from '@angular/http';
+import { CallbackComponent } from './callback/callback.component';
+import { AuthenticationService } from './shared/services/authentication.service';
 
 @NgModule({
     imports: [
@@ -27,6 +29,7 @@ import { HttpModule } from '@angular/http';
     ],
     declarations: [
         AppComponent,
+        CallbackComponent,
         HomeComponent, 
         ContactComponent, 
         NotFoundComponent, 
@@ -36,6 +39,7 @@ import { HttpModule } from '@angular/http';
     ],
     providers: [
         InfoTileService, 
+        AuthenticationService,
         AuthGuard, 
         CanDeactivateGuard
     ],

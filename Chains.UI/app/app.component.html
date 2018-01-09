@@ -17,6 +17,19 @@
                 <li><a routerLink="/about" routerLinkActive="active">About</a></li>
                 <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
             </ul>
+            <!-- <div class="right">
+                <button
+                    *ngIf="!auth.isAuthenticated()"
+                    (click)="auth.login()">
+                    Sign Up or Login
+                </button>
+
+                <button
+                    *ngIf="auth.isAuthenticated()"
+                    (click)="auth.logout()">
+                    Logout
+                </button>
+            </div> -->
         </div>
     </nav>
 </header>

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-
+import { AuthenticationService } from './shared/services/authentication.service';
 @Component({
     selector:'my-app', 
     templateUrl: './app/app.component.html', 
@@ -8,6 +7,6 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent{
-    
+    //constructor(public auth: AuthenticationService) {}
 }
 
