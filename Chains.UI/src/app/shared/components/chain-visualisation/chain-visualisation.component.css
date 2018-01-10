@@ -52,7 +52,7 @@
 
 .type-start-not-ready {
     text-align:right;
-    background: url('/content/images/ripped-edge-rtl.png') no-repeat right;
+    background: url('/assets/images/ripped-edge-rtl.png') no-repeat right;
 }
 
 .type-end-ready.ltr {
@@ -64,7 +64,7 @@
 .type-end-not-ready.ltr {
     text-align: left;
     padding-left: 10px;
-    background: url('/content/images/ripped-edge-ltr.png') no-repeat left;
+    background: url('/assets/images/ripped-edge-ltr.png') no-repeat left;
 }
 
 .type-end-ready.rtl {
@@ -76,7 +76,7 @@
 .type-end-not-ready.rtl {
     text-align: right;
     padding-right: 10px;
-    background: url('/content/images/ripped-edge-rtl.png') no-repeat right;
+    background: url('/assets/images/ripped-edge-rtl.png') no-repeat right;
 }
 
 

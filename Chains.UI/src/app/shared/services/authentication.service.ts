@@ -9,7 +9,7 @@ export class AuthenticationService {
 
   auth0Options = {
     theme: {
-      logo: '/content/images/logo-sm.png',
+      logo: '/assets/images/logo-sm.png',
       primaryColor: '#DFA612'
     },
     auth: {
