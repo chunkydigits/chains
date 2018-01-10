@@ -10,7 +10,7 @@
         },
         // map tells the System loader where to look for things
         map: {
-            // our app is within the app folder
+            // our app is within the dist folder
             app: 'dist',
             // angular bundles
             '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -35,10 +35,6 @@
                 defaultExtension: 'js'
             },
             rxjs: {
-                defaultExtension: 'js'
-            },
-            'angular-in-memory-web-api': {
-                main: './index.js',
                 defaultExtension: 'js'
             }
         }

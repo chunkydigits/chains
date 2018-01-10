@@ -13,7 +13,14 @@
         ],
         "removeComments": false,
         "noImplicitAny": false,
-        "outDir": "dist",
+        "outDir": "src/dist",
         "allowSyntheticDefaultImports": true
-    }
+    },
+    "include": [
+        "src/app/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
 }
