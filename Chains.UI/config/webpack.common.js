@@ -2,27 +2,35 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var helpers = require('./helpers');
+const { AotPlugin } = require('@ngtools/webpack');
 
 module.exports = {
   entry: {
     'polyfills': './src/polyfills.ts',
     'vendor': './src/vendor.ts',
-    'app': './src/main.ts'
+    'app': './src/main.ts', 
+    'estate-agent': './src/estate-agent/estate-agent.module.ts'
   },
 
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
+    modules: [
+      'src',
+      'node_modules'
+    ]
   },
 
   module: {
     rules: [
       {
+        test: /\.ts$/, loaders: ['@ngtools/webpack']
+      },
+      {
         test: /\.ts$/,
         loaders: [
-          {
-            loader: 'awesome-typescript-loader',
-            options: { configFileName: helpers.root('src', 'tsconfig.json') }
-          } , 'angular2-template-loader'
+          'awesome-typescript-loader',
+          'angular2-template-loader',
+          'angular-router-loader'
         ]
       },
       {
@@ -55,13 +63,19 @@ module.exports = {
       {} // a map of your routes
     ),
 
+    new webpack.NamedModulesPlugin(),
+
     new webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfills']
     }),
 
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    })
+    }),
+    new AotPlugin({
+      tsConfigPath: './tsconfig.json',
+      entryModule: '../src/app/app.module#AppModule'
+    }),
   ]
 };
 
