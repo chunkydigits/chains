@@ -5,25 +5,34 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ChainVisualisationComponent } from './shared/components/chain-visualisation/chain-visualisation.component';
 import { CallbackComponent } from './callback/callback.component';
+import { AuthGuard } from './shared/guards/auth-guard.service';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'callback', component: CallbackComponent},
     {
         path: 'about',
-        loadChildren: 'app/about/about.module#AboutModule'
+        loadChildren: 'app/about/about.module#AboutModule',
+        canActivateChild: [AuthGuard],
+        canActivate: [AuthGuard]
     },
     {
         path: 'estate-agent',
-        loadChildren: 'app/estate-agent/estate-agent.module#EstateAgentModule'
+        loadChildren: 'app/estate-agent/estate-agent.module#EstateAgentModule',
+        canActivateChild: [AuthGuard],
+        canActivate: [AuthGuard]
     },
     {
         path: 'public-user',
-        loadChildren: 'app/public-user/public-user.module#PublicUserModule'
+        loadChildren: 'app/public-user/public-user.module#PublicUserModule',
+        canActivateChild: [AuthGuard],
+        canActivate: [AuthGuard]
     },
     {
         path: 'solicitor',
-        loadChildren: 'app/solicitor/solicitor.module#SolicitorModule'
+        loadChildren: 'app/solicitor/solicitor.module#SolicitorModule',
+        canActivateChild: [AuthGuard],
+        canActivate: [AuthGuard]
     },
     { path: 'contact', component: ContactComponent },
     { path: '**', component: NotFoundComponent }
