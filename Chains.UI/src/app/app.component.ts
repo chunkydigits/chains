@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-//import { AuthenticationService } from './shared/services/authentication.service';
+import { AuthenticationService } from './shared/services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'My House Chain';
-  //constructor(public auth: AuthenticationService) {}
+  constructor(public auth: AuthenticationService) {}
 }
