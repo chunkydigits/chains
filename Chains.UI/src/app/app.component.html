@@ -17,7 +17,7 @@
               <li><a routerLink="/about" routerLinkActive="active">About</a></li>
               <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
           </ul>
-          <div class="right">
+          <div class="right" style="position:absolute;right:0;">
               <button
                   *ngIf="!auth.isAuthenticated()"
                   (click)="auth.login()">

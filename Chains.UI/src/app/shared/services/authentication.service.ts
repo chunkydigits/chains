@@ -31,9 +31,15 @@ export class AuthenticationService {
 
   constructor(private router: Router) {
     this.lock.on('authenticated', (authResult: any) => {
-      console.log('Nice, it worked!');
-      this.router.navigate(['/']); // go to the home route
-      // ...finish implementing authenticated
+      this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
+        if (error) {
+          throw new Error(error);
+        }
+    
+        localStorage.setItem('token', authResult.idToken);
+        localStorage.setItem('profile', JSON.stringify(profile));
+        this.router.navigate(['/']);
+      });
     });
 
     this.lock.on('authorization_error', error => {
@@ -46,10 +52,11 @@ export class AuthenticationService {
   }
 
   logout() {
-    // ...implement logout
+    localStorage.removeItem('profile');
+    localStorage.removeItem('token');
   }
 
   isAuthenticated() {
-    // ...implement logout
+    return tokenNotExpired();
   }
 }
