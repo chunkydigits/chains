@@ -6,8 +6,8 @@ import { ChainService } from '../../services/chain.service';
 @Component({
     moduleId: module.id,
     selector: 'chain-visualisation',
-    templateUrl: '/app/shared/components/chain-visualisation/chain-visualisation.component.html', 
-    styleUrls: ['../../../../app/shared/components/chain-visualisation/chain-visualisation.component.css']
+    templateUrl: './chain-visualisation.component.html', 
+    styleUrls: ['./chain-visualisation.component.css']
 })
 
 export class ChainVisualisationComponent implements OnChanges {

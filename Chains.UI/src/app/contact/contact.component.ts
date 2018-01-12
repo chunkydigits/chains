@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'contact-page',
-    templateUrl: './app/contact/contact.component.html',
+    templateUrl: './contact.component.html',
     styles: [`
         .page { 
             background-color:white;

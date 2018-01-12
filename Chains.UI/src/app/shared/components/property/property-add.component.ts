@@ -5,8 +5,8 @@ import { PropertyService } from '../../services/property.service';
 @Component({
     //moduleId: module.id,
     selector: 'property-add',
-    templateUrl: '/app/shared/components/property/property-add.component.html', 
-    styleUrls: ['../../../../app/shared/components/property/property-add.component.css']
+    templateUrl: './property-add.component.html', 
+    styleUrls: ['./property-add.component.css']
 })
 
 export class PropertyAddComponent {

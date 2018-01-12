@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'solicitor-page',
-    templateUrl: './app/solicitor/solicitor.component.html',
+    templateUrl: './solicitor.component.html',
     styles: [`
         .page { 
             background-color:white;

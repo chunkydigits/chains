@@ -6,8 +6,8 @@ import { Observable } from 'rxjs/Rx';
 @Component({
     moduleId: module.id,
     selector: 'property-list',
-    templateUrl: '/app/shared/components/property/property-list.component.html', 
-    styleUrls: ['../../../../app/shared/components/property/property-list.component.css']
+    templateUrl: './property-list.component.html', 
+    styleUrls: ['./property-list.component.css']
 })
 
 export class PropertyListComponent implements OnInit {

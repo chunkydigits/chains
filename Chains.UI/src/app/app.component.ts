@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 //import { AuthenticationService } from './shared/services/authentication.service';
+
 @Component({
-    selector:'my-app', 
-    templateUrl: './app/app.component.html', 
-    styleUrls: ['./app/app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-
-export class AppComponent{
-    //constructor(public auth: AuthenticationService) {}
+export class AppComponent {
+  title = 'My House Chain';
+  //constructor(public auth: AuthenticationService) {}
 }
-
