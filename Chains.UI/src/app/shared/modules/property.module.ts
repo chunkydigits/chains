@@ -5,6 +5,7 @@ import { PropertyListComponent } from '../components/property/property-list.comp
 import { PropertyInfoComponent } from '../components/property/property-info.component';
 import { PropertyAddComponent } from '../components/property/property-add.component';
 import { PropertyService } from '../services/property.service';
+import { RightMoveService } from '../services/rightmove.service';
 import { ChainModule } from './chain.module';
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ChainModule } from './chain.module';
         PropertyAddComponent
     ],
     providers: [
-        PropertyService
+        PropertyService, 
+        RightMoveService
     ]
 })
 

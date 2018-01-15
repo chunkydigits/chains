@@ -52,6 +52,8 @@
           <Property Name="BuyerCodeId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="DateAdded" Type="datetime" Nullable="false" />
           <Property Name="RightMoveIdentifier" Type="nvarchar" MaxLength="20" />
+          <Property Name="RightMoveImageUrl" Type="nvarchar(max)" />
+          <Property Name="RightMoveAskingPrice" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PropertyCheckListitem">
           <Key>
@@ -337,6 +339,8 @@
           <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RightMoveIdentifier" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PropertyCheckListitems" Relationship="ChainsDBModel.FK_PropertyCheckListitem_Property" FromRole="Property" ToRole="PropertyCheckListitem" />
+          <Property Name="RightMoveImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RightMoveAskingPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PublicUser">
           <Key>
@@ -626,6 +630,8 @@
           <EntitySetMapping Name="Properties">
             <EntityTypeMapping TypeName="ChainsDBModel.Property">
               <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="RightMoveAskingPrice" ColumnName="RightMoveAskingPrice" />
+                <ScalarProperty Name="RightMoveImageUrl" ColumnName="RightMoveImageUrl" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
                 <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />

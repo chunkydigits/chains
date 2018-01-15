@@ -93,6 +93,8 @@ namespace Chains.API.Repositories
             dbEntity.AddressLine5 = viewModel.AddressLine5;
             dbEntity.Postcode = viewModel.Postcode;
             dbEntity.RightMoveIdentifier = viewModel.RightMoveIdentifier;
+            dbEntity.RightMoveImageUrl = viewModel.RightMoveImageUrl;
+            dbEntity.RightMoveAskingPrice = viewModel.RightMoveAskingPrice;
             dbEntity.DateAdded = DateTime.UtcNow;
             dbEntity.DisplayName = viewModel.DisplayName;
             dbEntity.PropertyCheckListitems = new List<PropertyCheckListitem>(); // Get the standard set if checklist items 

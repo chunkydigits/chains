@@ -24,6 +24,8 @@ namespace Chains.API.Models.ViewModels
         public System.Guid BuyerCodeId { get; set; }
         public System.DateTime DateAdded { get; set; }
         public string RightMoveIdentifier { get; set; }
+        public string RightMoveImageUrl { get; set; }
+        public string RightMoveAskingPrice { get; set; }
         
         public List<PropertyCheckListItemViewModel> PropertyCheckListitems { get; set; }
     }

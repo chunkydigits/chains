@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Threading.Tasks;
 using System.Web.Http;
 using Chains.API.Models;
 using Chains.API.Repositories;
-using Newtonsoft.Json;
 using Chains.API.Models.ViewModels;
 using log4net;
 using System.Reflection;
-using System.Web;
 
 namespace Chains.API.Controllers
 {
@@ -18,11 +13,13 @@ namespace Chains.API.Controllers
     public class PropertyController : ApiController
     {
         private readonly IPropertyRepository _propertyRepository;
+        private readonly IRightMoveRepository _rightMoveRepository;
         private readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public PropertyController(IPropertyRepository propertyRepository)
+        public PropertyController(IPropertyRepository propertyRepository, IRightMoveRepository rightMoveRepository)
         {
             _propertyRepository = propertyRepository;
+            _rightMoveRepository = rightMoveRepository;
         }
 
         [HttpGet]
@@ -71,6 +68,20 @@ namespace Chains.API.Controllers
         public void Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+        [HttpGet]
+        [Route("rightmove-image/{rightMoveIdentifier}")]
+        public string GetRightMoveImageUrl(string rightMoveIdentifier)
+        {
+            return _rightMoveRepository.GetImageUrl(rightMoveIdentifier);
+        }
+
+        [HttpGet]
+        [Route("rightmove-details/{rightMoveIdentifier}")]
+        public RightMoveDetailViewModel GetRightMoveDetails(string rightMoveIdentifier)
+        {
+            return _rightMoveRepository.GetAllDetails(rightMoveIdentifier);
         }
     }
 }

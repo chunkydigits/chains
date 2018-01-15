@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PropertyService } from '../../services/property.service';
+import { RightMoveService } from '../../services/rightmove.service';
 
 @Component({
     //moduleId: module.id,
@@ -15,11 +16,11 @@ export class PropertyAddComponent {
     
     property: any = {"Id" : "NEW"};
 
-    constructor(private service: PropertyService) { }
+    constructor(private propertyService: PropertyService, private rightMoveService: RightMoveService) { }
 
     saveProperty() {
         debugger;
-        this.service.saveProperty(this.property);
+        this.propertyService.saveProperty(this.property);
         this.propertyCreated.emit({ property: this.property });
         this.property = {"Id" : "NEW"};
         console.log('saveProperty');
@@ -41,5 +42,19 @@ export class PropertyAddComponent {
             return window.confirm('Your changes will be disgarded');
         }
         return true;
+    }
+
+    getRightMoveDetails(rightMoveIdentifier: string){
+        console.log("in getRMImage");
+        
+        this.rightMoveService.getRightMoveDetails(rightMoveIdentifier)
+            .then(
+                details => {
+                    console.log("RightMoveDetails", details)
+                    this.property.RightMoveImageUrl = details.ImageUrl;
+                    this.property.RightMoveAskingPrice = details.AskingPrice;
+                },
+                error => console.log("Error when retrieving details from RightMove", error)
+            );
     }
 }

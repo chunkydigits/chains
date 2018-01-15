@@ -113,6 +113,11 @@
         </form>
     </div>
     <div class="col-md-6 no-overflow">
-        <img src="../assets/images/house.png" alt="House Picture which will go and get rightmove first picture to display."/>
+        <button type="button"
+        class="btn btn-block btn-lg btn-info"
+        (click)="getRightMoveDetails(property.RightMoveIdentifier)">Get Details</button>
+
+        <img *ngIf="property.RightMoveImageUrl" src="{{property.RightMoveImageUrl}}" class="rightmove-image"/>
+        <strong *ngIf="property.RightMoveAskingPrice">Asking Price: {{property.RightMoveAskingPrice}}</strong>
     </div>
 </div>

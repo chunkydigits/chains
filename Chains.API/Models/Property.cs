@@ -32,6 +32,8 @@ namespace Chains.API.Models
         public System.Guid BuyerCodeId { get; set; }
         public System.DateTime DateAdded { get; set; }
         public string RightMoveIdentifier { get; set; }
+        public string RightMoveImageUrl { get; set; }
+        public string RightMoveAskingPrice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PropertyCheckListitem> PropertyCheckListitems { get; set; }

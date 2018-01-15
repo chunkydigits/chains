@@ -1,8 +1,4 @@
-property-add { 
-    #button-panel {
-        margin-bottom:40px;
-    }
-}
+property-add {}
 
 .clickable {
     cursor:pointer;
@@ -10,4 +6,7 @@ property-add {
 
 .no-overflow { 
     overflow:hidden;
+}
+.rightmove-image {
+    width:300px;
 }
