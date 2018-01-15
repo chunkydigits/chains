@@ -6,14 +6,14 @@ import { Observable } from 'rxjs/Rx';
 @Component({
     moduleId: module.id,
     selector: 'property-list',
-    templateUrl: './property-list.component.html', 
+    templateUrl: './property-list.component.html',
     styleUrls: ['./property-list.component.css']
 })
 
 export class PropertyListComponent implements OnInit {
     @Input() userId: string;
-    properties: any[]; 
-    activeProperty: any;    
+    properties: any[];
+    activeProperty: any;
     addingProperty: boolean = false;
     editingProperty: boolean = false;
     errorMessage: string = null;
@@ -28,13 +28,13 @@ export class PropertyListComponent implements OnInit {
         this.errorMessage = null;
         this.service.getPropertiesForUserId(this.userId)
             .subscribe(
-                properties => this.properties = properties,
-                error => this.errorMessage = error
+            properties => this.properties = properties,
+            error => this.errorMessage = error
             );
         this.loadingProperties = false;
         if (this.errorMessage === null)
             console.log('Properties successfully retrieved');
-        else 
+        else
             console.log('Error found when retrieving properties');
     }
 
@@ -50,22 +50,23 @@ export class PropertyListComponent implements OnInit {
     addProperty() {
         this.addingProperty = true;
     }
-    
-    editProperty(id:string) {
-        this.editingProperty = true;
-        this.selectProperty(id);
-    }
 
-    newPropertyCreated(event) {
-        console.log('newPropertyCreated Event Fired');
-        this.properties.push(event.property);
-        //this.service.saveProperty(event.property);
+    propertySaved(event) {
+        console.log('propertyNotSaved Event Fired');
+        var found = this.properties.findIndex(function (el) {
+            return el.Id === event.property.Id;
+        });
+
+        if(found !== -1) {
+            this.properties[found] = event.property;
+        } else {
+            this.properties.push(event.property);
+        }
         this.addingProperty = false;
     }
 
-    newPropertyCreateCancelled(event) {
-        console.log('newPropertyCreateCancelled Event Fired');
-        console.log(event.cancelled);
+    propertyNotSaved(event) {
+        console.log('propertyNotSaved Event Fired');
         this.addingProperty = !event.cancelled;
-    }    
+    }
 } 

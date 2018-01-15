@@ -11,8 +11,8 @@ import { RightMoveService } from '../../services/rightmove.service';
 })
 
 export class PropertyAddComponent {
-    @Output() propertyCreated = new EventEmitter();
-    @Output() propertyCreateCancelled = new EventEmitter();
+    @Output() propertySaved = new EventEmitter();
+    @Output() propertyNotSaved = new EventEmitter();
     
     property: any = {"Id" : "NEW"};
 
@@ -21,7 +21,7 @@ export class PropertyAddComponent {
     saveProperty() {
         debugger;
         this.propertyService.saveProperty(this.property);
-        this.propertyCreated.emit({ property: this.property });
+        this.propertySaved.emit({ property: this.property });
         this.property = {"Id" : "NEW"};
         console.log('saveProperty');
     }
@@ -31,7 +31,7 @@ export class PropertyAddComponent {
         if (this.canDeactivate()) {
             console.log('cancelled adding a property');
             this.property = {"Id" : "NEW"};
-            this.propertyCreateCancelled.emit({ cancelled: true });
+            this.propertyNotSaved.emit({ cancelled: true });
             console.log('cancelled');
         }
     }

@@ -12,4 +12,8 @@ import { PropertyService } from '../../services/property.service';
 export class PropertyInfoComponent {
     @Input() property: any;     
     selectedPropertyId: string = '1';
+
+    public editProperty(id: string){
+        alert("in edit prop");
+    }
 } 

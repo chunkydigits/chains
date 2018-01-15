@@ -23,7 +23,7 @@
         There are no properties to view
     </div>
 </div>
-<property-add *ngIf="addingProperty" 
-              (propertyCreated)="newPropertyCreated($event)" 
-              (propertyCreateCancelled)="newPropertyCreateCancelled($event)"></property-add>
+<property-add *ngIf="addingProperty || editingProperty" 
+              (propertySaved)="propertySaved($event)" 
+              (propertyNotSaved)="propertyNotSaved($event)"></property-add>
 <property-info [property]="activeProperty" *ngIf="!addingProperty"></property-info>
