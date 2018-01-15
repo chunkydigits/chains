@@ -1,5 +1,5 @@
 <div class="col-md-3">
-    <div class="row" style="color: red;" *ngIf="!errorMessage">
+    <div class="row" style="color: red;" *ngIf="errorMessage != null && !loadingProperties">
         There was an error retrieving the property list
     </div>
     <div class="row" *ngIf="!addingProperty">
@@ -14,7 +14,7 @@
     </div>
     <div class="row" *ngIf="properties && !loadingProperties">
         <div *ngFor="let property of properties"
-             (click)=selectProperty(property.id)
+             (click)=selectProperty(property.Id)
              class="clickable">
                 {{property.DisplayName}}
         </div>

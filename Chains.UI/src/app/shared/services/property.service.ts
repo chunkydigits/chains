@@ -26,7 +26,7 @@ export class PropertyService {
     
     getPropertyById(id: string): Observable<any> {
         return this.getPropertiesForUserId(null)
-            .map(properties => properties.find(property => property.id === id));
+            .map(properties => properties.find(property => property.Id === id));
     }
 
     saveProperty(property: any) {

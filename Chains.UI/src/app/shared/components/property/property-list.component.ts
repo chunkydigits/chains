@@ -16,7 +16,7 @@ export class PropertyListComponent implements OnInit {
     activeProperty: any;    
     addingProperty: boolean = false;
     editingProperty: boolean = false;
-    errorMessage: string;
+    errorMessage: string = null;
     loadingProperties: boolean = true;
     constructor(private service: PropertyService, private router: Router) { }
 
@@ -39,6 +39,7 @@ export class PropertyListComponent implements OnInit {
     }
 
     selectProperty(id: string) {
+        debugger;
         if (this.addingProperty) {
             console.log('You can not view a property whilst adding a new property');
             return;
