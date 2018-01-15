@@ -13,6 +13,10 @@
                 {{property.Postcode}}
             </div>
             <div class="col-md-12">
+                <img *ngIf="property.RightMoveImageUrl" src="{{property.RightMoveImageUrl}}" class="rightmove-image"/>
+                <strong *ngIf="property.RightMoveAskingPrice">Asking Price: {{property.RightMoveAskingPrice}}</strong>
+            </div>
+            <div class="col-md-12">
                 <h2>Chain Visualisation</h2>
                 <chain-visualisation [propertyId]="property.Id"></chain-visualisation>
             </div>

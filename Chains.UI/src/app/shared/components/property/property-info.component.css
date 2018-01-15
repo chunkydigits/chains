@@ -5,3 +5,7 @@ property-info {
 .clickable {
     cursor:pointer;
 }
+
+.rightmove-image {
+    width:300px;
+}
