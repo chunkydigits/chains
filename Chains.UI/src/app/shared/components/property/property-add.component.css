@@ -1,5 +1,7 @@
 property-add { 
-
+    #button-panel {
+        margin-bottom:40px;
+    }
 }
 
 .clickable {

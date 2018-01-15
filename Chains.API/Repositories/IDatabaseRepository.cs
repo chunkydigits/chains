@@ -8,6 +8,7 @@ namespace Chains.API.Repositories
     public interface IDatabaseRepository
     {
         List<Property> GetAllProperties(ChainsDBEntities context);
-       List<PropertyCheckListitem> GetCheckListItemsForProperty(ChainsDBEntities context, Guid propertyId);
+        List<PropertyCheckListitem> GetCheckListItemsForProperty(ChainsDBEntities context, Guid propertyId);
+        void AddItem<T>(ChainsDBEntities context, T item);
     }
 }

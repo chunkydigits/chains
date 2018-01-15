@@ -33,10 +33,6 @@ namespace Chains.API.Models
         public virtual DbSet<PublicUserType> PublicUserTypes { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<TransactionType> TransactionTypes { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<CheckListItem> CheckListItems { get; set; }
         public virtual DbSet<CustomDefaultCheckList> CustomDefaultCheckLists { get; set; }
         public virtual DbSet<CustomDefaultCheckListItem> CustomDefaultCheckListItems { get; set; }

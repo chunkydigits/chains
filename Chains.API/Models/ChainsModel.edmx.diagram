@@ -11,18 +11,11 @@
         <EntityTypeShape EntityType="ChainsDBModel.PublicUserType" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ChainsDBModel.Transaction" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ChainsDBModel.TransactionType" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChainsDBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChainsDBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChainsDBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChainsDBModel.AspNetUser" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
         <AssociationConnector Association="ChainsDBModel.FK_Property_BuyerCode" ManuallyRouted="false" />
         <AssociationConnector Association="ChainsDBModel.FK_Property_SellerCode" ManuallyRouted="false" />
         <AssociationConnector Association="ChainsDBModel.FK_Transaction_Property" ManuallyRouted="false" />
         <AssociationConnector Association="ChainsDBModel.FK_PublicUser_PublicUserType" ManuallyRouted="false" />
         <AssociationConnector Association="ChainsDBModel.FK_Transaction_TransactionType" ManuallyRouted="false" />
-        <AssociationConnector Association="ChainsDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="ChainsDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="ChainsDBModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ChainsDBModel.CheckListItem" Width="1.5" PointX="6" PointY="10.625" />
         <EntityTypeShape EntityType="ChainsDBModel.CustomDefaultCheckList" Width="1.5" PointX="6" PointY="13.75" />
         <EntityTypeShape EntityType="ChainsDBModel.CustomDefaultCheckListItem" Width="1.5" PointX="8.25" PointY="10.625" />

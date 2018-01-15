@@ -58,7 +58,7 @@ namespace Chains.API.Controllers
         [HttpPost]
         public bool Post([FromBody]PropertyInformationViewModel property)
         {
-            return true;
+            return _propertyRepository.AddProperty(property);
         }
 
         // PUT api/values/5
