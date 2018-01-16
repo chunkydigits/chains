@@ -9,9 +9,17 @@ export class AuthenticationService {
 
   auth0Options = {
     theme: {
-      logo: '/assets/images/logo-sm.png',
-      primaryColor: '#DFA612'
+      logo: '/assets/images/logo-sm-g.png',
+      primaryColor: '#30bf2f'
     },
+    languageDictionary: {
+      title: "My House Chain",
+      loginLabel: "Sign In",
+      signUpLabel: "Create",
+      signUpSubmitLabel: "Create",
+      emailInputPlaceholder: "your email address"
+      //,signUpTerms: "I agree to the <a href='/terms' target='_new'>terms of service</a> and <a href='/privacy' target='_new'>privacy policy</a>."
+  },
     auth: {
       redirectUrl: authenticationConfiguration.auth0.callbackURL,
       responseType: 'token id_token',
