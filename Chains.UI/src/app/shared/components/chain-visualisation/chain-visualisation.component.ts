@@ -7,7 +7,7 @@ import { ChainService } from '../../services/chain.service';
     moduleId: module.id,
     selector: 'chain-visualisation',
     templateUrl: './chain-visualisation.component.html', 
-    styleUrls: ['./chain-visualisation.component.css']
+    styleUrls: ['./chain-visualisation.component.scss']
 })
 
 export class ChainVisualisationComponent implements OnChanges {

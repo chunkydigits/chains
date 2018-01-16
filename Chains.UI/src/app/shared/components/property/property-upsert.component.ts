@@ -7,7 +7,7 @@ import { RightMoveService } from '../../services/rightmove.service';
     //moduleId: module.id,
     selector: 'property-upsert',
     templateUrl: './property-upsert.component.html', 
-    styleUrls: ['./property-upsert.component.css']
+    styleUrls: ['./property-upsert.component.scss']
 })
 
 export class PropertyUpsertComponent {
