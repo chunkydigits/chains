@@ -55,19 +55,14 @@ namespace Chains.API.Controllers
         [HttpPost]
         public bool Post([FromBody]PropertyInformationViewModel property)
         {
-            return _propertyRepository.UpsertProperty(property);
+            return _propertyRepository.Upsert(property);
         }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        
+        [Route("delete/{id}/{username}")]
+        [HttpDelete]
+        public bool Delete(Guid id, string username)
         {
-            throw new NotImplementedException();
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
+            return _propertyRepository.Delete(id, username);
         }
 
         [HttpGet]

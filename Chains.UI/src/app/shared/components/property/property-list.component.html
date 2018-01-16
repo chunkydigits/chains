@@ -28,4 +28,6 @@
               (propertySaved)="propertySaved($event)" 
               (propertyNotSaved)="propertyNotSaved($event)"></property-upsert>
 <property-info [property]="activeProperty" *ngIf="!addingProperty && !editingProperty"
-                (editingProperty)="editProperty($event)"></property-info>
+                (editingProperty)="editProperty($event)"
+                (deletedProperty)="propertyDeleted($event)"
+                ></property-info>

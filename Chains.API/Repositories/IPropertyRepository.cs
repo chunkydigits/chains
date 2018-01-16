@@ -9,6 +9,7 @@ namespace Chains.API.Repositories
     {
         List<PropertyInformationViewModel> GetAllProperties();
         List<PropertyCheckListitem> GetCheckListItemsForProperty(Guid id);
-        bool UpsertProperty(PropertyInformationViewModel viewModel);
+        bool Upsert(PropertyInformationViewModel viewModel);
+        bool Delete(Guid id, string username);
     }
 }

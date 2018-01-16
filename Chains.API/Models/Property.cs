@@ -34,6 +34,9 @@ namespace Chains.API.Models
         public string RightMoveIdentifier { get; set; }
         public string RightMoveImageUrl { get; set; }
         public string RightMoveAskingPrice { get; set; }
+        public bool Deleted { get; set; }
+        public Nullable<System.DateTime> DateDeleted { get; set; }
+        public string DeletedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PropertyCheckListitem> PropertyCheckListitems { get; set; }

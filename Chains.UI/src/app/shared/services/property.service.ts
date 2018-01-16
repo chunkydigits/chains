@@ -44,6 +44,15 @@ export class PropertyService {
         return {"Id": "NEW"};
     }
 
+    deleteProperty(id){
+        debugger;
+        return this.http
+            .delete(this.propertyBaseUrl + 'delete/' + id + '/\'username\'', this.options)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleErrorObservable);
+    }
+
     private mapDtoToPropertyInformationListViewModel(res: Response) {
         console.log(res.json());
         return res.json() || [];

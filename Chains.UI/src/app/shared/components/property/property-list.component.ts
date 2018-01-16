@@ -69,4 +69,11 @@ export class PropertyListComponent implements OnInit {
         console.log('propertyNotSaved Event Fired');
         this.addingProperty = !event.cancelled;
     }
+
+    propertyDeleted(event) {
+        console.log('propertyNotSaved Event Fired');
+        this.getProperties();
+        this.addingProperty = false;
+        this.editingProperty = false;
+    }
 } 

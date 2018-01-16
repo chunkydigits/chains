@@ -14,10 +14,28 @@ export class PropertyInfoComponent {
 
     
     @Output() editingProperty = new EventEmitter();
+    @Output() deletedProperty = new EventEmitter();
+
+    public constructor(private propertyService: PropertyService) {}
 
     selectedPropertyId: string = '1';
 
     public editProperty(id: string){
         this.editingProperty.emit({property: this.property})
+    }
+
+    public deleteProperty(id: string) {
+        this.propertyService.deleteProperty(id).then((response) => {
+            if(response)
+                this.deletedProperty.emit({property: this.property});
+            return;
+        })
+        .catch(() => {
+            this.showError();
+        });
+    }
+
+    showError(){
+        alert("Failed to delete property");
     }
 } 

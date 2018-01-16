@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using Chains.API.Models;
@@ -34,6 +35,17 @@ namespace Chains.API.Repositories
             }
 
             context.Entry(entity).CurrentValues.SetValues(item);
+            context.SaveChanges();
+        }
+
+        public void DeleteProperty(ChainsDBEntities context, Guid id, string username, DateTime now)
+        {
+            var propertyToDelete = context.Properties.Find(id);
+
+            propertyToDelete.DateDeleted = now;
+            propertyToDelete.DeletedBy = username;
+            propertyToDelete.Deleted = true;
+
             context.SaveChanges();
         }
     }

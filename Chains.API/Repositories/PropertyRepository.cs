@@ -14,12 +14,14 @@ namespace Chains.API.Repositories
     {
         private readonly IDatabaseRepository _databaseRepository;
         private readonly IGuidRepository _guidRepository;
+        private readonly IDateRepository _dateRepository;
         private readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public PropertyRepository(IDatabaseRepository databaseRepository, IGuidRepository guidRepository)
+        public PropertyRepository(IDatabaseRepository databaseRepository, IGuidRepository guidRepository, IDateRepository dateRepository)
         {
             _databaseRepository = databaseRepository;
             _guidRepository = guidRepository;
+            _dateRepository = dateRepository;
         }
 
         public List<PropertyInformationViewModel> GetAllProperties()
@@ -51,7 +53,7 @@ namespace Chains.API.Repositories
             }
         }
 
-        public bool UpsertProperty(PropertyInformationViewModel viewModel)
+        public bool Upsert(PropertyInformationViewModel viewModel)
         {
             try
             {
@@ -89,6 +91,23 @@ namespace Chains.API.Repositories
             }
         }
 
+        public bool Delete(Guid id, string username)
+        {
+            try
+            {
+                using (var context = new ChainsDBEntities())
+                {
+                    _databaseRepository.DeleteProperty(context, id, username, _dateRepository.Now());
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.ErrorFormat("Failed to delete property ID: {0} - Exception: {1}", id, ex.Message);
+                return false;
+            }
+        }
+
         #region Supporting Methods 
 
         public Property ConvertPropertyViewModelToDBType(PropertyInformationViewModel viewModel, Guid buyerCodeId, Guid sellerCodeId)
@@ -105,7 +124,7 @@ namespace Chains.API.Repositories
             dbEntity.RightMoveIdentifier = viewModel.RightMoveIdentifier;
             dbEntity.RightMoveImageUrl = viewModel.RightMoveImageUrl;
             dbEntity.RightMoveAskingPrice = viewModel.RightMoveAskingPrice;
-            dbEntity.DateAdded = DateTime.UtcNow;
+            dbEntity.DateAdded = _dateRepository.Now();
             dbEntity.DisplayName = viewModel.DisplayName;
             dbEntity.PropertyCheckListitems = new List<PropertyCheckListitem>(); // Get the standard set if checklist items 
             dbEntity.BuyerCodeId = buyerCodeId;
@@ -117,7 +136,7 @@ namespace Chains.API.Repositories
         private Code GetNewCode()
         {
             var code = new Code();
-            code.DateAdded = DateTime.UtcNow;
+            code.DateAdded = _dateRepository.Now();
             code.Id = _guidRepository.NewGuid();
             code.Code1 = _guidRepository.NewGuid().ToString().Substring(0, 5);
             return code;

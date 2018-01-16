@@ -50,10 +50,13 @@
           <Property Name="Postcode" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="SellerCodeId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="BuyerCodeId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="DateAdded" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="RightMoveIdentifier" Type="nvarchar" MaxLength="20" />
           <Property Name="RightMoveImageUrl" Type="nvarchar(max)" />
           <Property Name="RightMoveAskingPrice" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime2" Precision="7" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="PropertyCheckListitem">
           <Key>
@@ -336,11 +339,14 @@
           <Property Name="Postcode" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SellerCodeId" Type="Guid" Nullable="false" />
           <Property Name="BuyerCodeId" Type="Guid" Nullable="false" />
-          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="RightMoveIdentifier" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PropertyCheckListitems" Relationship="ChainsDBModel.FK_PropertyCheckListitem_Property" FromRole="Property" ToRole="PropertyCheckListitem" />
           <Property Name="RightMoveImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RightMoveAskingPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="7" />
+          <Property Name="DeletedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PublicUser">
           <Key>
@@ -630,6 +636,9 @@
           <EntitySetMapping Name="Properties">
             <EntityTypeMapping TypeName="ChainsDBModel.Property">
               <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="RightMoveAskingPrice" ColumnName="RightMoveAskingPrice" />
                 <ScalarProperty Name="RightMoveImageUrl" ColumnName="RightMoveImageUrl" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
