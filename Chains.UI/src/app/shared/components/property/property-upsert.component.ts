@@ -1,29 +1,46 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PropertyService } from '../../services/property.service';
 import { RightMoveService } from '../../services/rightmove.service';
 
 @Component({
     //moduleId: module.id,
-    selector: 'property-add',
-    templateUrl: './property-add.component.html', 
-    styleUrls: ['./property-add.component.css']
+    selector: 'property-upsert',
+    templateUrl: './property-upsert.component.html', 
+    styleUrls: ['./property-upsert.component.css']
 })
 
-export class PropertyAddComponent {
+export class PropertyUpsertComponent {
     @Output() propertySaved = new EventEmitter();
     @Output() propertyNotSaved = new EventEmitter();
+
+    @Input() property: any;
     
-    property: any = {"Id" : "NEW"};
+    //property: any = {"Id" : "NEW"};
 
     constructor(private propertyService: PropertyService, private rightMoveService: RightMoveService) { }
 
     saveProperty() {
         debugger;
-        this.propertyService.saveProperty(this.property);
-        this.propertySaved.emit({ property: this.property });
-        this.property = {"Id" : "NEW"};
-        console.log('saveProperty');
+        this.propertyService.saveProperty(this.property).then((response) => {
+            if(response) {
+                this.propertySaved.emit({ property: this.property });
+                this.property = {"Id" : "NEW"};
+            }
+            else 
+                return;      
+        })
+        .catch(() => {
+            this.showError();
+        });
+    }
+
+    showError(){
+        alert("Failed to save property");
+    }
+
+    populateDisplayName(){
+        this.property.DisplayName = this.property.AddressLine1 + ", " + this.property.Postcode;
     }
         
     cancelAddProperty() {

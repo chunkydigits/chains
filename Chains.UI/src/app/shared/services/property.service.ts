@@ -34,7 +34,7 @@ export class PropertyService {
         debugger;
         console.log("Body of Request:", body);
         return this.http
-            .post(this.propertyBaseUrl + 'create', body, this.options)
+            .post(this.propertyBaseUrl + 'upsert', body, this.options)
             .toPromise()
             .then(this.extractData)
             .catch(this.handleErrorObservable);

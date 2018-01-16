@@ -51,24 +51,34 @@ namespace Chains.API.Repositories
             }
         }
 
-        public bool AddProperty(PropertyInformationViewModel viewModel)
+        public bool UpsertProperty(PropertyInformationViewModel viewModel)
         {
             try
             {
                 using (var context = new ChainsDBEntities())
                 {
-                    var buyerCode = GetNewCode();
-                    _databaseRepository.AddItem(context, buyerCode);
-                    var sellerCode = GetNewCode();
-                    _databaseRepository.AddItem(context, sellerCode);
+                    var insert = viewModel.Id == _guidRepository.EmptyGuid();
 
+                    if (insert)
+                    {
+                        var buyerCode = GetNewCode();
+                        _databaseRepository.AddItem(context, buyerCode);
+                        var sellerCode = GetNewCode();
+                        _databaseRepository.AddItem(context, sellerCode);
+                    }
 
-                    var propertyToAdd = ConvertPropertyViewModelToDBType(viewModel, buyerCode.Id, sellerCode.Id);
-
-                    // TODO: add standard checklist items 
-                    context.Properties.Add(propertyToAdd);
+                    var propertyToUpsert = ConvertPropertyViewModelToDBType(viewModel, viewModel.BuyerCodeId, viewModel.SellerCodeId);
                     
-                    _databaseRepository.AddItem<Property>(context, propertyToAdd);
+                    // TODO: add standard checklist items 
+                    if (insert)
+                    {
+                        _databaseRepository.AddItem<Property>(context, propertyToUpsert);
+                    }
+                    else
+                    {
+                        _databaseRepository.Update(context, propertyToUpsert, propertyToUpsert.Id);   
+                    }
+
                     return true;
                 }
             }
@@ -85,7 +95,7 @@ namespace Chains.API.Repositories
         {
             
             var dbEntity = new Property();
-            dbEntity.Id = _guidRepository.NewGuid();
+            dbEntity.Id = viewModel.Id == _guidRepository.EmptyGuid() ? _guidRepository.NewGuid() : viewModel.Id;
             dbEntity.AddressLine1 = viewModel.AddressLine1;
             dbEntity.AddressLine2 = viewModel.AddressLine2;
             dbEntity.AddressLine3 = viewModel.AddressLine3;

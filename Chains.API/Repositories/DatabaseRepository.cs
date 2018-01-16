@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using Chains.API.Models;
 
@@ -21,6 +22,18 @@ namespace Chains.API.Repositories
         public void AddItem<T>(ChainsDBEntities context, T item)
         {
             context.Set(typeof(T)).Add(item);
+            context.SaveChanges();
+        }
+        
+        public void Update<T>(ChainsDBEntities context, T item, Guid id)
+        {
+            var entity = context.Set(typeof(T)).Find(id);
+            if (entity == null)
+            {
+                return;
+            }
+
+            context.Entry(entity).CurrentValues.SetValues(item);
             context.SaveChanges();
         }
     }

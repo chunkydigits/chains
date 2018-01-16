@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PropertyListComponent } from '../components/property/property-list.component';
 import { PropertyInfoComponent } from '../components/property/property-info.component';
-import { PropertyAddComponent } from '../components/property/property-add.component';
+import { PropertyUpsertComponent } from '../components/property/property-upsert.component';
 import { PropertyService } from '../services/property.service';
 import { RightMoveService } from '../services/rightmove.service';
 import { ChainModule } from './chain.module';
@@ -17,12 +17,12 @@ import { ChainModule } from './chain.module';
     exports: [
         PropertyListComponent, 
         PropertyInfoComponent,
-        PropertyAddComponent
+        PropertyUpsertComponent
     ],
     declarations: [
         PropertyListComponent,
         PropertyInfoComponent, 
-        PropertyAddComponent
+        PropertyUpsertComponent
     ],
     providers: [
         PropertyService, 

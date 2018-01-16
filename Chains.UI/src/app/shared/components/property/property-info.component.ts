@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Injectable } from '@angular/core';
+import { Component, OnInit, Input, Output, Injectable, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PropertyService } from '../../services/property.service';
 
@@ -11,9 +11,13 @@ import { PropertyService } from '../../services/property.service';
 
 export class PropertyInfoComponent {
     @Input() property: any;     
+
+    
+    @Output() editingProperty = new EventEmitter();
+
     selectedPropertyId: string = '1';
 
     public editProperty(id: string){
-        alert("in edit prop");
+        this.editingProperty.emit({property: this.property})
     }
 } 

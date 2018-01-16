@@ -47,15 +47,15 @@ namespace Chains.API.Controllers
             {
                 _logger.WarnFormat("GetProperties: Not managed to retrieve properties for the searcherId: {0}", searcherId.HasValue ? searcherId.ToString() : "<NULL>");
                 return null;
-            }
+            }   
         }
 
         // POST api/values
-        [Route("create")]
+        [Route("upsert")]
         [HttpPost]
         public bool Post([FromBody]PropertyInformationViewModel property)
         {
-            return _propertyRepository.AddProperty(property);
+            return _propertyRepository.UpsertProperty(property);
         }
 
         // PUT api/values/5

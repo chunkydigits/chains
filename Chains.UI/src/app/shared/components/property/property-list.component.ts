@@ -48,20 +48,20 @@ export class PropertyListComponent implements OnInit {
     }
 
     addProperty() {
+        this.activeProperty = {"Id" : "NEW"};
+        this.editingProperty = false;
         this.addingProperty = true;
+    }
+
+    editProperty(ev) {
+        this.addingProperty = false;
+        this.editingProperty = true;
+        this.activeProperty = ev.property;
     }
 
     propertySaved(event) {
         console.log('propertyNotSaved Event Fired');
-        var found = this.properties.findIndex(function (el) {
-            return el.Id === event.property.Id;
-        });
-
-        if(found !== -1) {
-            this.properties[found] = event.property;
-        } else {
-            this.properties.push(event.property);
-        }
+        this.getProperties();
         this.addingProperty = false;
     }
 

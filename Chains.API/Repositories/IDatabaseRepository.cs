@@ -10,5 +10,6 @@ namespace Chains.API.Repositories
         List<Property> GetAllProperties(ChainsDBEntities context);
         List<PropertyCheckListitem> GetCheckListItemsForProperty(ChainsDBEntities context, Guid propertyId);
         void AddItem<T>(ChainsDBEntities context, T item);
+        void Update<T>(ChainsDBEntities context, T item, Guid Id);
     }
 }
