@@ -18,6 +18,7 @@ namespace Chains.API.Models
         public Property()
         {
             this.PropertyCheckListitems = new HashSet<PropertyCheckListitem>();
+            this.Transactions = new HashSet<Transaction>();
         }
     
         public System.Guid Id { get; set; }
@@ -38,7 +39,11 @@ namespace Chains.API.Models
         public Nullable<System.DateTime> DateDeleted { get; set; }
         public string DeletedBy { get; set; }
     
+        public virtual Code Code { get; set; }
+        public virtual Code Code1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PropertyCheckListitem> PropertyCheckListitems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

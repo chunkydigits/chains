@@ -14,8 +14,20 @@ namespace Chains.API.Models
     
     public partial class Code
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Code()
+        {
+            this.Properties = new HashSet<Property>();
+            this.Properties1 = new HashSet<Property>();
+        }
+    
         public System.Guid Id { get; set; }
         public string Code1 { get; set; }
         public System.DateTime DateAdded { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Property> Properties { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Property> Properties1 { get; set; }
     }
 }

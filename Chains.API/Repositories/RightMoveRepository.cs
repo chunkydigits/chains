@@ -35,7 +35,13 @@ namespace Chains.API.Repositories
 
         public string GetPropertyAskingPrice(string rightMoveIdentifier)
         {
-            throw new NotImplementedException();
+            var web = new HtmlWeb();
+            var doc = web.Load(GetRightMoveUrl(rightMoveIdentifier));
+            
+            var askingPrice = doc.DocumentNode
+                .SelectSingleNode("//p[@id='propertyHeaderPrice']/strong").InnerText;
+
+            return askingPrice.RemoveTabsAndLineBreaks().Replace("&pound;", "£");
         }
 
         public RightMoveDetailViewModel GetAllDetails(string rightMoveIdentifier)

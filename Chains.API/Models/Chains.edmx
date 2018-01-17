@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ChainsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ChainsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CheckListItem">
           <Key>
             <PropertyRef Name="Id" />
@@ -220,36 +220,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="GetBuyerOnlyType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="chains" ReturnType="uniqueidentifier" />
-        <Function Name="GetBuyerSellerType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="chains" ReturnType="uniqueidentifier" />
-        <Function Name="GetBuyTransactionType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="chains" ReturnType="uniqueidentifier" />
         <Function Name="GetChainForPropertyId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="chains">
           <Parameter Name="sourcePropertyId" Type="uniqueidentifier" Mode="In" />
-        </Function>
-        <Function Name="GetProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="chains" ReturnType="uniqueidentifier">
-          <Parameter Name="propertyName" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="GetPublicUserByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="chains" ReturnType="uniqueidentifier">
-          <Parameter Name="publicUserName" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="GetSellerOnlyType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="chains" ReturnType="uniqueidentifier" />
-        <Function Name="GetSellTransactionType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="chains" ReturnType="uniqueidentifier" />
-        <Function Name="GetTransactionsForProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="chains">
-          <Parameter Name="propertyId" Type="uniqueidentifier" Mode="In" />
-          <ReturnType>
-            <CollectionType>
-              <RowType>
-                <Property Name="sellerId" Type="uniqueidentifier" />
-                <Property Name="sellTransactionId" Type="uniqueidentifier" />
-                <Property Name="sellerTypeId" Type="uniqueidentifier" />
-                <Property Name="sellerBuyPropertyId" Type="uniqueidentifier" />
-                <Property Name="buyerId" Type="uniqueidentifier" />
-                <Property Name="buyTransactionId" Type="uniqueidentifier" />
-                <Property Name="buyerTypeId" Type="uniqueidentifier" />
-                <Property Name="buyerSellPropertyId" Type="uniqueidentifier" />
-              </RowType>
-            </CollectionType>
-          </ReturnType>
         </Function>
         <EntityContainer Name="ChainsDBModelStoreContainer">
           <EntitySet Name="CheckListItem" EntityType="Self.CheckListItem" Schema="chains" store:Type="Tables" />
@@ -303,20 +275,21 @@
             <End Role="Transaction" EntitySet="Transaction" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChainsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <ComplexType Name="GetTransactionsForProperty_Result">
-          <Property Name="sellerId" Type="Guid" />
-          <Property Name="sellTransactionId" Type="Guid" />
-          <Property Name="sellerTypeId" Type="Guid" />
-          <Property Name="sellerBuyPropertyId" Type="Guid" />
-          <Property Name="buyerId" Type="Guid" />
-          <Property Name="buyTransactionId" Type="Guid" />
-          <Property Name="buyerTypeId" Type="Guid" />
-          <Property Name="buyerSellPropertyId" Type="Guid" />
-        </ComplexType>
+        <EntityType Name="CheckListItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CustomDefaultCheckListItems" Relationship="Self.FK_CustomDefaultCheckListItem_CheckListItem" FromRole="CheckListItem" ToRole="CustomDefaultCheckListItem" />
+          <NavigationProperty Name="PropertyCheckListitems" Relationship="Self.FK_PropertyCheckListitem_CheckListItem" FromRole="CheckListItem" ToRole="PropertyCheckListitem" />
+        </EntityType>
         <EntityType Name="Code">
           <Key>
             <PropertyRef Name="Id" />
@@ -324,6 +297,27 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Code1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Properties" Relationship="Self.FK_Property_BuyerCode" FromRole="Code" ToRole="Property" />
+          <NavigationProperty Name="Properties1" Relationship="Self.FK_Property_SellerCode" FromRole="Code" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="CustomDefaultCheckList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="OwnerId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="PublicUser" Relationship="Self.FK_CustomDefaultCheckList_PublicUser" FromRole="CustomDefaultCheckList" ToRole="PublicUser" />
+          <NavigationProperty Name="CustomDefaultCheckListItems" Relationship="Self.FK_CustomDefaultCheckListItem_CustomDefaultCheckListItem" FromRole="CustomDefaultCheckList" ToRole="CustomDefaultCheckListItem" />
+        </EntityType>
+        <EntityType Name="CustomDefaultCheckListItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CheckListItemId" Type="Guid" Nullable="false" />
+          <Property Name="CustomDefaultCheckListId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="CheckListItem" Relationship="Self.FK_CustomDefaultCheckListItem_CheckListItem" FromRole="CustomDefaultCheckListItem" ToRole="CheckListItem" />
+          <NavigationProperty Name="CustomDefaultCheckList" Relationship="Self.FK_CustomDefaultCheckListItem_CustomDefaultCheckListItem" FromRole="CustomDefaultCheckListItem" ToRole="CustomDefaultCheckList" />
         </EntityType>
         <EntityType Name="Property">
           <Key>
@@ -341,12 +335,28 @@
           <Property Name="BuyerCodeId" Type="Guid" Nullable="false" />
           <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="RightMoveIdentifier" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PropertyCheckListitems" Relationship="ChainsDBModel.FK_PropertyCheckListitem_Property" FromRole="Property" ToRole="PropertyCheckListitem" />
           <Property Name="RightMoveImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RightMoveAskingPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <Property Name="DateDeleted" Type="DateTime" Precision="7" />
           <Property Name="DeletedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Code" Relationship="Self.FK_Property_BuyerCode" FromRole="Property" ToRole="Code" />
+          <NavigationProperty Name="Code1" Relationship="Self.FK_Property_SellerCode" FromRole="Property" ToRole="Code" />
+          <NavigationProperty Name="PropertyCheckListitems" Relationship="Self.FK_PropertyCheckListitem_Property" FromRole="Property" ToRole="PropertyCheckListitem" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_Property" FromRole="Property" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="PropertyCheckListitem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PropertyId" Type="Guid" Nullable="false" />
+          <Property Name="CheckListItemId" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Completed" Type="DateTime" Precision="3" />
+          <Property Name="CompletedUserId" Type="Guid" />
+          <NavigationProperty Name="CheckListItem" Relationship="Self.FK_PropertyCheckListitem_CheckListItem" FromRole="PropertyCheckListitem" ToRole="CheckListItem" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_PropertyCheckListitem_Property" FromRole="PropertyCheckListitem" ToRole="Property" />
         </EntityType>
         <EntityType Name="PublicUser">
           <Key>
@@ -355,8 +365,8 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PublicUserTypeId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="CustomDefaultCheckLists" Relationship="Self.FK_CustomDefaultCheckList_PublicUser" FromRole="PublicUser" ToRole="CustomDefaultCheckList" />
           <NavigationProperty Name="PublicUserType" Relationship="Self.FK_PublicUser_PublicUserType" FromRole="PublicUser" ToRole="PublicUserType" />
-          <NavigationProperty Name="CustomDefaultCheckLists" Relationship="ChainsDBModel.FK_CustomDefaultCheckList_PublicUser" FromRole="PublicUser" ToRole="CustomDefaultCheckList" />
         </EntityType>
         <EntityType Name="PublicUserType">
           <Key>
@@ -385,6 +395,30 @@
           <Property Name="Value" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_TransactionType" FromRole="TransactionType" ToRole="Transaction" />
         </EntityType>
+        <Association Name="FK_CustomDefaultCheckListItem_CheckListItem">
+          <End Role="CheckListItem" Type="Self.CheckListItem" Multiplicity="1" />
+          <End Role="CustomDefaultCheckListItem" Type="Self.CustomDefaultCheckListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CheckListItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomDefaultCheckListItem">
+              <PropertyRef Name="CheckListItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyCheckListitem_CheckListItem">
+          <End Role="CheckListItem" Type="Self.CheckListItem" Multiplicity="1" />
+          <End Role="PropertyCheckListitem" Type="Self.PropertyCheckListitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CheckListItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyCheckListitem">
+              <PropertyRef Name="CheckListItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Property_BuyerCode">
           <End Role="Code" Type="Self.Code" Multiplicity="1" />
           <End Role="Property" Type="Self.Property" Multiplicity="*" />
@@ -406,6 +440,42 @@
             </Principal>
             <Dependent Role="Property">
               <PropertyRef Name="SellerCodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomDefaultCheckList_PublicUser">
+          <End Role="PublicUser" Type="Self.PublicUser" Multiplicity="1" />
+          <End Role="CustomDefaultCheckList" Type="Self.CustomDefaultCheckList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PublicUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomDefaultCheckList">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomDefaultCheckListItem_CustomDefaultCheckListItem">
+          <End Role="CustomDefaultCheckList" Type="Self.CustomDefaultCheckList" Multiplicity="1" />
+          <End Role="CustomDefaultCheckListItem" Type="Self.CustomDefaultCheckListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomDefaultCheckList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomDefaultCheckListItem">
+              <PropertyRef Name="CustomDefaultCheckListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyCheckListitem_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="PropertyCheckListitem" Type="Self.PropertyCheckListitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyCheckListitem">
+              <PropertyRef Name="PropertyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -446,12 +516,24 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ChainsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CheckListItems" EntityType="Self.CheckListItem" />
           <EntitySet Name="Codes" EntityType="Self.Code" />
+          <EntitySet Name="CustomDefaultCheckLists" EntityType="Self.CustomDefaultCheckList" />
+          <EntitySet Name="CustomDefaultCheckListItems" EntityType="Self.CustomDefaultCheckListItem" />
           <EntitySet Name="Properties" EntityType="Self.Property" />
+          <EntitySet Name="PropertyCheckListitems" EntityType="Self.PropertyCheckListitem" />
           <EntitySet Name="PublicUsers" EntityType="Self.PublicUser" />
           <EntitySet Name="PublicUserTypes" EntityType="Self.PublicUserType" />
           <EntitySet Name="Transactions" EntityType="Self.Transaction" />
           <EntitySet Name="TransactionTypes" EntityType="Self.TransactionType" />
+          <AssociationSet Name="FK_CustomDefaultCheckListItem_CheckListItem" Association="Self.FK_CustomDefaultCheckListItem_CheckListItem">
+            <End Role="CheckListItem" EntitySet="CheckListItems" />
+            <End Role="CustomDefaultCheckListItem" EntitySet="CustomDefaultCheckListItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyCheckListitem_CheckListItem" Association="Self.FK_PropertyCheckListitem_CheckListItem">
+            <End Role="CheckListItem" EntitySet="CheckListItems" />
+            <End Role="PropertyCheckListitem" EntitySet="PropertyCheckListitems" />
+          </AssociationSet>
           <AssociationSet Name="FK_Property_BuyerCode" Association="Self.FK_Property_BuyerCode">
             <End Role="Code" EntitySet="Codes" />
             <End Role="Property" EntitySet="Properties" />
@@ -459,6 +541,18 @@
           <AssociationSet Name="FK_Property_SellerCode" Association="Self.FK_Property_SellerCode">
             <End Role="Code" EntitySet="Codes" />
             <End Role="Property" EntitySet="Properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomDefaultCheckList_PublicUser" Association="Self.FK_CustomDefaultCheckList_PublicUser">
+            <End Role="PublicUser" EntitySet="PublicUsers" />
+            <End Role="CustomDefaultCheckList" EntitySet="CustomDefaultCheckLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomDefaultCheckListItem_CustomDefaultCheckListItem" Association="Self.FK_CustomDefaultCheckListItem_CustomDefaultCheckListItem">
+            <End Role="CustomDefaultCheckList" EntitySet="CustomDefaultCheckLists" />
+            <End Role="CustomDefaultCheckListItem" EntitySet="CustomDefaultCheckListItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyCheckListitem_Property" Association="Self.FK_PropertyCheckListitem_Property">
+            <End Role="Property" EntitySet="Properties" />
+            <End Role="PropertyCheckListitem" EntitySet="PropertyCheckListitems" />
           </AssociationSet>
           <AssociationSet Name="FK_Transaction_Property" Association="Self.FK_Transaction_Property">
             <End Role="Property" EntitySet="Properties" />
@@ -472,36 +566,9 @@
             <End Role="TransactionType" EntitySet="TransactionTypes" />
             <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
-          <FunctionImport Name="GetTransactionsForProperty" IsComposable="true" ReturnType="Collection(ChainsDBModel.GetTransactionsForProperty_Result)">
-          <Parameter Name="propertyId" Mode="In" Type="Guid" />
-          </FunctionImport>
           <FunctionImport Name="GetChainForPropertyId" ReturnType="Collection(ChainsDBModel.GetChainForPropertyId_Result)">
-          <Parameter Name="sourcePropertyId" Mode="In" Type="Guid" />
+            <Parameter Name="sourcePropertyId" Mode="In" Type="Guid" />
           </FunctionImport>
-          <EntitySet Name="CheckListItems" EntityType="ChainsDBModel.CheckListItem" />
-          <EntitySet Name="CustomDefaultCheckLists" EntityType="ChainsDBModel.CustomDefaultCheckList" />
-          <EntitySet Name="CustomDefaultCheckListItems" EntityType="ChainsDBModel.CustomDefaultCheckListItem" />
-          <EntitySet Name="PropertyCheckListitems" EntityType="ChainsDBModel.PropertyCheckListitem" />
-          <AssociationSet Name="FK_CustomDefaultCheckListItem_CheckListItem" Association="ChainsDBModel.FK_CustomDefaultCheckListItem_CheckListItem">
-            <End Role="CheckListItem" EntitySet="CheckListItems" />
-            <End Role="CustomDefaultCheckListItem" EntitySet="CustomDefaultCheckListItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PropertyCheckListitem_CheckListItem" Association="ChainsDBModel.FK_PropertyCheckListitem_CheckListItem">
-            <End Role="CheckListItem" EntitySet="CheckListItems" />
-            <End Role="PropertyCheckListitem" EntitySet="PropertyCheckListitems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomDefaultCheckList_PublicUser" Association="ChainsDBModel.FK_CustomDefaultCheckList_PublicUser">
-            <End Role="PublicUser" EntitySet="PublicUsers" />
-            <End Role="CustomDefaultCheckList" EntitySet="CustomDefaultCheckLists" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomDefaultCheckListItem_CustomDefaultCheckListItem" Association="ChainsDBModel.FK_CustomDefaultCheckListItem_CustomDefaultCheckListItem">
-            <End Role="CustomDefaultCheckList" EntitySet="CustomDefaultCheckLists" />
-            <End Role="CustomDefaultCheckListItem" EntitySet="CustomDefaultCheckListItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PropertyCheckListitem_Property" Association="ChainsDBModel.FK_PropertyCheckListitem_Property">
-            <End Role="Property" EntitySet="Properties" />
-            <End Role="PropertyCheckListitem" EntitySet="PropertyCheckListitems" />
-          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="GetChainForPropertyId_Result">
           <Property Type="Int32" Name="ix" Nullable="true" />
@@ -516,114 +583,21 @@
           <Property Type="Guid" Name="buyerTypeId" Nullable="true" />
           <Property Type="Guid" Name="buyerSellPropertyId" Nullable="true" />
         </ComplexType>
-        <EntityType Name="CheckListItem">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CustomDefaultCheckListItems" Relationship="ChainsDBModel.FK_CustomDefaultCheckListItem_CheckListItem" FromRole="CheckListItem" ToRole="CustomDefaultCheckListItem" />
-          <NavigationProperty Name="PropertyCheckListitems" Relationship="ChainsDBModel.FK_PropertyCheckListitem_CheckListItem" FromRole="CheckListItem" ToRole="PropertyCheckListitem" />
-        </EntityType>
-        <EntityType Name="CustomDefaultCheckList">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="OwnerId" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="PublicUser" Relationship="ChainsDBModel.FK_CustomDefaultCheckList_PublicUser" FromRole="CustomDefaultCheckList" ToRole="PublicUser" />
-          <NavigationProperty Name="CustomDefaultCheckListItems" Relationship="ChainsDBModel.FK_CustomDefaultCheckListItem_CustomDefaultCheckListItem" FromRole="CustomDefaultCheckList" ToRole="CustomDefaultCheckListItem" />
-        </EntityType>
-        <EntityType Name="CustomDefaultCheckListItem">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="CheckListItemId" Type="Guid" Nullable="false" />
-          <Property Name="CustomDefaultCheckListId" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="CheckListItem" Relationship="ChainsDBModel.FK_CustomDefaultCheckListItem_CheckListItem" FromRole="CustomDefaultCheckListItem" ToRole="CheckListItem" />
-          <NavigationProperty Name="CustomDefaultCheckList" Relationship="ChainsDBModel.FK_CustomDefaultCheckListItem_CustomDefaultCheckListItem" FromRole="CustomDefaultCheckListItem" ToRole="CustomDefaultCheckList" />
-        </EntityType>
-        <EntityType Name="PropertyCheckListitem">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="PropertyId" Type="Guid" Nullable="false" />
-          <Property Name="CheckListItemId" Type="Guid" Nullable="false" />
-          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Completed" Type="DateTime" Precision="3" />
-          <Property Name="CompletedUserId" Type="Guid" />
-          <NavigationProperty Name="CheckListItem" Relationship="ChainsDBModel.FK_PropertyCheckListitem_CheckListItem" FromRole="PropertyCheckListitem" ToRole="CheckListItem" />
-          <NavigationProperty Name="Property" Relationship="ChainsDBModel.FK_PropertyCheckListitem_Property" FromRole="PropertyCheckListitem" ToRole="Property" />
-        </EntityType>
-        <Association Name="FK_CustomDefaultCheckListItem_CheckListItem">
-          <End Type="ChainsDBModel.CheckListItem" Role="CheckListItem" Multiplicity="1" />
-          <End Type="ChainsDBModel.CustomDefaultCheckListItem" Role="CustomDefaultCheckListItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CheckListItem">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomDefaultCheckListItem">
-              <PropertyRef Name="CheckListItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PropertyCheckListitem_CheckListItem">
-          <End Type="ChainsDBModel.CheckListItem" Role="CheckListItem" Multiplicity="1" />
-          <End Type="ChainsDBModel.PropertyCheckListitem" Role="PropertyCheckListitem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CheckListItem">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PropertyCheckListitem">
-              <PropertyRef Name="CheckListItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomDefaultCheckList_PublicUser">
-          <End Type="ChainsDBModel.PublicUser" Role="PublicUser" Multiplicity="1" />
-          <End Type="ChainsDBModel.CustomDefaultCheckList" Role="CustomDefaultCheckList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PublicUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomDefaultCheckList">
-              <PropertyRef Name="OwnerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomDefaultCheckListItem_CustomDefaultCheckListItem">
-          <End Type="ChainsDBModel.CustomDefaultCheckList" Role="CustomDefaultCheckList" Multiplicity="1" />
-          <End Type="ChainsDBModel.CustomDefaultCheckListItem" Role="CustomDefaultCheckListItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CustomDefaultCheckList">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomDefaultCheckListItem">
-              <PropertyRef Name="CustomDefaultCheckListId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PropertyCheckListitem_Property">
-          <End Type="ChainsDBModel.Property" Role="Property" Multiplicity="1" />
-          <End Type="ChainsDBModel.PropertyCheckListitem" Role="PropertyCheckListitem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Property">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PropertyCheckListitem">
-              <PropertyRef Name="PropertyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ChainsDBModelStoreContainer" CdmEntityContainer="ChainsDBEntities">
+          <EntitySetMapping Name="CheckListItems">
+            <EntityTypeMapping TypeName="ChainsDBModel.CheckListItem">
+              <MappingFragment StoreEntitySet="CheckListItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Codes">
             <EntityTypeMapping TypeName="ChainsDBModel.Code">
               <MappingFragment StoreEntitySet="Code">
@@ -633,14 +607,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CustomDefaultCheckLists">
+            <EntityTypeMapping TypeName="ChainsDBModel.CustomDefaultCheckList">
+              <MappingFragment StoreEntitySet="CustomDefaultCheckList">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomDefaultCheckListItems">
+            <EntityTypeMapping TypeName="ChainsDBModel.CustomDefaultCheckListItem">
+              <MappingFragment StoreEntitySet="CustomDefaultCheckListItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CheckListItemId" ColumnName="CheckListItemId" />
+                <ScalarProperty Name="CustomDefaultCheckListId" ColumnName="CustomDefaultCheckListId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Properties">
             <EntityTypeMapping TypeName="ChainsDBModel.Property">
               <MappingFragment StoreEntitySet="Property">
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-                <ScalarProperty Name="RightMoveAskingPrice" ColumnName="RightMoveAskingPrice" />
-                <ScalarProperty Name="RightMoveImageUrl" ColumnName="RightMoveImageUrl" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
                 <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
@@ -653,6 +639,23 @@
                 <ScalarProperty Name="BuyerCodeId" ColumnName="BuyerCodeId" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="RightMoveIdentifier" ColumnName="RightMoveIdentifier" />
+                <ScalarProperty Name="RightMoveImageUrl" ColumnName="RightMoveImageUrl" />
+                <ScalarProperty Name="RightMoveAskingPrice" ColumnName="RightMoveAskingPrice" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyCheckListitems">
+            <EntityTypeMapping TypeName="ChainsDBModel.PropertyCheckListitem">
+              <MappingFragment StoreEntitySet="PropertyCheckListitem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="CheckListItemId" ColumnName="CheckListItemId" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Completed" ColumnName="Completed" />
+                <ScalarProperty Name="CompletedUserId" ColumnName="CompletedUserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -691,20 +694,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionName="ChainsDBModel.Store.GetTransactionsForProperty" FunctionImportName="GetTransactionsForProperty">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChainsDBModel.GetTransactionsForProperty_Result">
-                <ScalarProperty Name="sellerId" ColumnName="sellerId" />
-                <ScalarProperty Name="sellTransactionId" ColumnName="sellTransactionId" />
-                <ScalarProperty Name="sellerTypeId" ColumnName="sellerTypeId" />
-                <ScalarProperty Name="sellerBuyPropertyId" ColumnName="sellerBuyPropertyId" />
-                <ScalarProperty Name="buyerId" ColumnName="buyerId" />
-                <ScalarProperty Name="buyTransactionId" ColumnName="buyTransactionId" />
-                <ScalarProperty Name="buyerTypeId" ColumnName="buyerTypeId" />
-                <ScalarProperty Name="buyerSellPropertyId" ColumnName="buyerSellPropertyId" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetChainForPropertyId" FunctionName="ChainsDBModel.Store.GetChainForPropertyId">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ChainsDBModel.GetChainForPropertyId_Result">
@@ -722,44 +711,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="CheckListItems">
-            <EntityTypeMapping TypeName="ChainsDBModel.CheckListItem">
-              <MappingFragment StoreEntitySet="CheckListItem">
-                <ScalarProperty Name="Details" ColumnName="Details" />
-                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomDefaultCheckLists">
-            <EntityTypeMapping TypeName="ChainsDBModel.CustomDefaultCheckList">
-              <MappingFragment StoreEntitySet="CustomDefaultCheckList">
-                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomDefaultCheckListItems">
-            <EntityTypeMapping TypeName="ChainsDBModel.CustomDefaultCheckListItem">
-              <MappingFragment StoreEntitySet="CustomDefaultCheckListItem">
-                <ScalarProperty Name="CustomDefaultCheckListId" ColumnName="CustomDefaultCheckListId" />
-                <ScalarProperty Name="CheckListItemId" ColumnName="CheckListItemId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PropertyCheckListitems">
-            <EntityTypeMapping TypeName="ChainsDBModel.PropertyCheckListitem">
-              <MappingFragment StoreEntitySet="PropertyCheckListitem">
-                <ScalarProperty Name="CompletedUserId" ColumnName="CompletedUserId" />
-                <ScalarProperty Name="Completed" ColumnName="Completed" />
-                <ScalarProperty Name="Created" ColumnName="Created" />
-                <ScalarProperty Name="CheckListItemId" ColumnName="CheckListItemId" />
-                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

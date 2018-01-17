@@ -27,26 +27,16 @@ namespace Chains.API.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CheckListItem> CheckListItems { get; set; }
         public virtual DbSet<Code> Codes { get; set; }
+        public virtual DbSet<CustomDefaultCheckList> CustomDefaultCheckLists { get; set; }
+        public virtual DbSet<CustomDefaultCheckListItem> CustomDefaultCheckListItems { get; set; }
         public virtual DbSet<Property> Properties { get; set; }
+        public virtual DbSet<PropertyCheckListitem> PropertyCheckListitems { get; set; }
         public virtual DbSet<PublicUser> PublicUsers { get; set; }
         public virtual DbSet<PublicUserType> PublicUserTypes { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<TransactionType> TransactionTypes { get; set; }
-        public virtual DbSet<CheckListItem> CheckListItems { get; set; }
-        public virtual DbSet<CustomDefaultCheckList> CustomDefaultCheckLists { get; set; }
-        public virtual DbSet<CustomDefaultCheckListItem> CustomDefaultCheckListItems { get; set; }
-        public virtual DbSet<PropertyCheckListitem> PropertyCheckListitems { get; set; }
-    
-        [DbFunction("ChainsDBEntities", "GetTransactionsForProperty")]
-        public virtual IQueryable<GetTransactionsForProperty_Result> GetTransactionsForProperty(Nullable<System.Guid> propertyId)
-        {
-            var propertyIdParameter = propertyId.HasValue ?
-                new ObjectParameter("propertyId", propertyId) :
-                new ObjectParameter("propertyId", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetTransactionsForProperty_Result>("[ChainsDBEntities].[GetTransactionsForProperty](@propertyId)", propertyIdParameter);
-        }
     
         public virtual ObjectResult<GetChainForPropertyId_Result> GetChainForPropertyId(Nullable<System.Guid> sourcePropertyId)
         {

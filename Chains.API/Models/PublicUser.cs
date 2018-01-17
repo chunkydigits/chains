@@ -24,8 +24,8 @@ namespace Chains.API.Models
         public string Name { get; set; }
         public System.Guid PublicUserTypeId { get; set; }
     
-        public virtual PublicUserType PublicUserType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomDefaultCheckList> CustomDefaultCheckLists { get; set; }
+        public virtual PublicUserType PublicUserType { get; set; }
     }
 }
