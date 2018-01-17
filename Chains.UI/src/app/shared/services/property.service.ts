@@ -31,7 +31,6 @@ export class PropertyService {
 
     saveProperty(property: any) {
         let body = JSON.stringify(property); 
-        debugger;
         console.log("Body of Request:", body);
         return this.http
             .post(this.propertyBaseUrl + 'upsert', body, this.options)
@@ -45,9 +44,11 @@ export class PropertyService {
     }
 
     deleteProperty(id){
+        var username = JSON.parse(localStorage.getItem('profile')).nickname;
+        var url = this.propertyBaseUrl + 'delete/' + id + '/' + username;
         debugger;
         return this.http
-            .delete(this.propertyBaseUrl + 'delete/' + id + '/\'username\'', this.options)
+            .get(url, this.options)
             .toPromise()
             .then(this.extractData)
             .catch(this.handleErrorObservable);

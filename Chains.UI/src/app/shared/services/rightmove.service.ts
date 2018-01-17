@@ -32,19 +32,16 @@ export class RightMoveService {
     }
 
     private extractData(res: Response) {
-        debugger;
         let body = res.json();
         return body.data || {};
     }
 
     private extractStringData(res: Response) {
-        debugger;
         let body = res.json();
         return body || {};
     }
 
     private handleErrorObservable(error: Response | any) {
-        debugger;
         console.error(error.message || error);
         return Observable.throw(error.message || error);
     }

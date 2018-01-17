@@ -59,7 +59,7 @@ namespace Chains.API.Controllers
         }
         
         [Route("delete/{id}/{username}")]
-        [HttpDelete]
+        [HttpGet]
         public bool Delete(Guid id, string username)
         {
             return _propertyRepository.Delete(id, username);

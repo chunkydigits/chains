@@ -21,7 +21,6 @@ export class PropertyUpsertComponent {
     constructor(private propertyService: PropertyService, private rightMoveService: RightMoveService) { }
 
     saveProperty() {
-        debugger;
         this.propertyService.saveProperty(this.property).then((response) => {
             if(response) {
                 this.propertySaved.emit({ property: this.property });

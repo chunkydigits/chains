@@ -6,7 +6,7 @@ using AutoMapper;
 using Chains.API.Models;
 using Chains.API.Models.ViewModels;
 using log4net;
-using log4net.Core;
+using WebGrease.Css.Extensions;
 
 namespace Chains.API.Repositories
 {
@@ -29,7 +29,7 @@ namespace Chains.API.Repositories
             using (var context = new ChainsDBEntities())
             {
                 var returnList = new List<PropertyInformationViewModel>();
-                var propertyList = _databaseRepository.GetAllProperties(context);
+                var propertyList = _databaseRepository.GetAllProperties(context).Where(o => !o.Deleted);
 
                 propertyList.ForEach(o =>
                 {

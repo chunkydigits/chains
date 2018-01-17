@@ -39,7 +39,6 @@ export class PropertyListComponent implements OnInit {
     }
 
     selectProperty(id: string) {
-        debugger;
         if (this.addingProperty) {
             console.log('You can not view a property whilst adding a new property');
             return;
@@ -48,7 +47,7 @@ export class PropertyListComponent implements OnInit {
     }
 
     addProperty() {
-        this.activeProperty = {"Id" : "NEW"};
+        this.activeProperty = { "Id": "NEW" };
         this.editingProperty = false;
         this.addingProperty = true;
     }
@@ -68,6 +67,7 @@ export class PropertyListComponent implements OnInit {
     propertyNotSaved(event) {
         console.log('propertyNotSaved Event Fired');
         this.addingProperty = !event.cancelled;
+        this.editingProperty = !event.cancelled;
     }
 
     propertyDeleted(event) {
@@ -75,5 +75,6 @@ export class PropertyListComponent implements OnInit {
         this.getProperties();
         this.addingProperty = false;
         this.editingProperty = false;
+        this.activeProperty = null;
     }
 } 
