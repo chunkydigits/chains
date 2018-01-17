@@ -22,7 +22,8 @@ namespace Chains.API.App_Start
                 defaults: new {id = RouteParameter.Optional}
             );
             
-            var json = config.Formatters.JsonFormatter;
+            var json = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
+            json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             json.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;

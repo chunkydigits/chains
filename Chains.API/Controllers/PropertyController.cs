@@ -34,6 +34,7 @@ namespace Chains.API.Controllers
             };
         }
 
+        [Authorize]
         [HttpGet]
         [Route("property-list")]
         public List<PropertyInformationViewModel> GetProperties(Guid? searcherId)
