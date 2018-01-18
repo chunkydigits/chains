@@ -192,6 +192,9 @@
   <ItemGroup>
     <Compile Include="App_Start\AutoMapperConfiguration.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Authorisation\PermissionAuthoriseAttribute.cs" />
+    <Compile Include="Authorisation\GroupAuthoriseAttribute.cs" />
+    <Compile Include="Authorisation\RoleAuthoriseAttribute.cs" />
     <Compile Include="Authorisation\ScopeAuthoriseAttribute.cs" />
     <Compile Include="Autofac\AutofacConfiguration.cs" />
     <Compile Include="Autofac\AutofacDependencies.cs" />

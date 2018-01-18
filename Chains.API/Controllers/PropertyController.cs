@@ -6,9 +6,11 @@ using Chains.API.Repositories;
 using Chains.API.Models.ViewModels;
 using log4net;
 using System.Reflection;
+using WebApi.Controllers;
 
 namespace Chains.API.Controllers
 {
+    //[Authorize] 
     [RoutePrefix("api/property")]
     public class PropertyController : ApiController
     {
@@ -33,8 +35,8 @@ namespace Chains.API.Controllers
                 RightMoveIdentifier = "1212233322"
             };
         }
-
-        [Authorize]
+        
+        [GroupAuthorise("GOD")]
         [HttpGet]
         [Route("property-list")]
         public List<PropertyInformationViewModel> GetProperties(Guid? searcherId)

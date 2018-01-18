@@ -44,8 +44,9 @@ export class AuthenticationService {
           throw new Error(error);
         }
     
-        //console.log("authResult", authResult);
+        console.log("authResult", authResult);
 
+        localStorage.setItem('accessToken', authResult.accessToken);
         localStorage.setItem('token', authResult.idToken);
         localStorage.setItem('profile', JSON.stringify(profile));
         this.router.navigate(['/']);
