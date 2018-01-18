@@ -13,12 +13,13 @@ export class PropertyService {
     options: RequestOptions;
 
     constructor(private http: Http) {
-        this.headers = new Headers({ 'Content-Type': 'text/plain' });
+        var bearerToken = "Bearer " + localStorage.getItem('token');
+        this.headers = new Headers({ 'Content-Type': 'text/plain', 'Authorization' : bearerToken  });
         this.options = new RequestOptions({ headers: this.headers });
     }
 
     getPropertiesForUserId(id: string): Observable<any[]> {
-        let properties = this.http.get(this.propertyBaseUrl + 'property-list?searcherId=null')
+        let properties = this.http.get(this.propertyBaseUrl + 'property-list?searcherId=null', this.options)
             .map(this.mapDtoToPropertyInformationListViewModel);
         console.log(properties);
         return properties;

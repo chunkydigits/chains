@@ -1,14 +1,12 @@
-﻿using Microsoft.Owin;
-using Microsoft.Owin.Security.DataHandler.Encoder;
-using Microsoft.Owin.Security.Jwt;
-using Owin;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
+﻿using System.Configuration;
+using System.IdentityModel.Tokens;
 using System.Web.Http;
+using Microsoft.Owin;
+using Owin;
+using Auth0.Owin;
 using Chains.API.App_Start;
+using Microsoft.Owin.Security.Jwt;
+using AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode;
 
 [assembly: OwinStartup(typeof(Chains.API.Startup))]
 namespace Chains.API
@@ -33,19 +31,20 @@ namespace Chains.API
 
         private void ConfigureAuthZero(IAppBuilder app)
         {
-            var issuer = "https://" + ConfigurationManager.AppSettings["auth0:Domain"] + "/";
-            var audience = ConfigurationManager.AppSettings["auth0:ClientId"];
-            var secret = TextEncodings.Base64.Encode(TextEncodings.Base64Url.Decode(ConfigurationManager.AppSettings["auth0:ClientSecret"]));
+            var domain = "https://" + ConfigurationManager.AppSettings["auth0:Domain"] + "/";
+            var apiIdentifier = ConfigurationManager.AppSettings["auth0:ClientId"];
 
             // Api controllers with an [Authorize] attribute will be validated with JWT
+            var keyResolver = new OpenIdConnectSigningKeyResolver(domain);
             app.UseJwtBearerAuthentication(
                 new JwtBearerAuthenticationOptions
                 {
-                    AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode.Active,
-                    AllowedAudiences = new[] { audience },
-                    IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[]
+                    AuthenticationMode = AuthenticationMode.Active,
+                    TokenValidationParameters = new TokenValidationParameters()
                     {
-                        new SymmetricKeyIssuerSecurityTokenProvider(issuer, secret)
+                        ValidAudience = apiIdentifier,
+                        ValidIssuer = domain,
+                        IssuerSigningKeyResolver = (token, securityToken, identifier, parameters) => keyResolver.GetSigningKey(identifier)
                     }
                 });
         }

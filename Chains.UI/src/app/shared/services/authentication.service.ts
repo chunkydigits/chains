@@ -25,7 +25,7 @@ export class AuthenticationService {
       responseType: 'token id_token',
       audience: `https://${authenticationConfiguration.auth0.domain}/userinfo`,
       params: {
-        scope: 'openid profile'
+        scope: 'openid profile email'
       }
     },
     autoclose: true

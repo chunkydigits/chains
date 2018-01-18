@@ -28,14 +28,18 @@ export class PropertyListComponent implements OnInit {
         this.errorMessage = null;
         this.service.getPropertiesForUserId(this.userId)
             .subscribe(
-            properties => this.properties = properties,
-            error => this.errorMessage = error
+            (properties) => {
+                this.properties = properties
+                debugger;
+                console.log('Properties successfully retrieved');
+                this.loadingProperties = false;
+            },
+            error => {
+                this.errorMessage = error
+                console.log('Error found when retrieving properties', error);
+                this.loadingProperties = false;
+            }
             );
-        this.loadingProperties = false;
-        if (this.errorMessage === null)
-            console.log('Properties successfully retrieved');
-        else
-            console.log('Error found when retrieving properties');
     }
 
     selectProperty(id: string) {
