@@ -14,7 +14,7 @@ export class PropertyService {
 
     constructor(private http: Http) {
         var bearerToken = "Bearer " + localStorage.getItem('token');
-        this.headers = new Headers({ 'Content-Type': 'text/plain', 'Authorization' : bearerToken  });
+        this.headers = new Headers({ 'Content-Type': 'application/json', 'Authorization' : bearerToken  });
         this.options = new RequestOptions({ headers: this.headers });
     }
 
