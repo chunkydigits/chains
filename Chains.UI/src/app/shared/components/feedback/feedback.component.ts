@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { expand } from 'rxjs/operators/expand';
-import { FeedbackService } from '../shared/services/feedback.service';
+import { FeedbackService } from '../../services/feedback.service';
 
 @Component({
   selector: 'feedback',

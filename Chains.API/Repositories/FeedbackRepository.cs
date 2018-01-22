@@ -27,6 +27,7 @@ namespace Chains.API.Repositories
         public bool Add(Feedback feedbackItem)
         {
             feedbackItem.AddedOn = _dateRepository.Now();
+            feedbackItem.Id = _guidRepository.NewGuid();
 
             try
             {

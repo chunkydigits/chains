@@ -18,7 +18,7 @@ import { HttpModule } from '@angular/http';
 import { CallbackComponent } from './callback/callback.component';
 import { AuthenticationService } from './shared/services/authentication.service';
 import { FeedbackService } from './shared/services/feedback.service';
-import { FeedbackComponent } from './feedback/feedback.component';
+import { FeedbackComponent } from './shared/components/feedback/feedback.component';
 
 @NgModule({
     imports: [
