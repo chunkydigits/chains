@@ -1,15 +1,24 @@
-<div class="feedback-container" [ngClass]="{'expanded': expanded}" >
+<div class="feedback-container" [ngClass]="{'expanded': expanded}">
   <div class="feedback-label rotate-90" (click)="expand()">
     Feedback
     <i class="material-icons">question_answer</i>
   </div>
   <div class="feedback-content">
-    <form #form="ngForm" (ngSubmit)="submitFeedback()">
-      <div id="messageContainer" *ngIf="displayMessage" [ngClass]="{ 'is-error':error }">
+    <div class="col-md-12">
+      <h4>Feedback</h4>
+      <p>Please feel free to leave us some feedback, whether it's telling us how to improve our service, functionality suggestions or even if it's just to tell us to stop wasting our time; </p>
+        <p><strong>All feedback is welcome!</strong></p>
+    </div>
+    <div class="col-md-12">
+      <div class="message-container" *ngIf="displayMessage" [ngClass]="{ 'is-error':error }">
         {{message}}
       </div>
+    </div>
 
-      <div class="col-md-12">
+    <form #feedbackForm="ngForm" (ngSubmit)="submitFeedback();feedbackForm.resetForm();" >
+
+      <div class="col-md-12" *ngIf="!hideForm">
+
         <div class="form-group" [ngClass]="{ 'has-error':name.invalid && name.touched }">
           <input type="text" class="form-control" name="name" required placeholder="Name (if you want)" [(ngModel)]="feedback.Name"
             #name="ngModel">
@@ -21,8 +30,7 @@
         </div>
 
         <div class="form-group" [ngClass]="{ 'has-error':details.invalid && details.touched }">
-          <input type="text" class="form-control" name="details" required placeholder="Details" [(ngModel)]="feedback.Details"
-            #details="ngModel">
+          <input type="text" class="form-control" name="details" required placeholder="Details" [(ngModel)]="feedback.Details" #details="ngModel">
           <span class="help-block" *ngIf="details.invalid && details.touched">You need to enter a suggest before submitting some feedback</span>
         </div>
       </div>
@@ -37,7 +45,7 @@
             </button>
           </div>
           <div class="col-md-8">
-            <button type="submit" class="btn btn-lg btn-block btn-primary" [disabled]="form.invalid">
+            <button type="submit" class="btn btn-lg btn-block btn-primary" [disabled]="feedbackForm.invalid" *ngIf="!hideForm">
               <i class="glyphicon glyphicon-floppy-disk"></i>
               &nbsp;Save
             </button>

@@ -13,6 +13,7 @@ export class FeedbackComponent implements OnInit {
   public error: boolean = false;
   public displayMessage: boolean = false;
   public feedback: any = {};
+  public hideForm: boolean = false;
 
   constructor(private service: FeedbackService) { }
 
@@ -29,6 +30,7 @@ export class FeedbackComponent implements OnInit {
         if (!response.error) {
           debugger;
           this.feedback = {};
+          this.hideForm = true;
           this.showMessage(false, "Thanks! Your feedback will be looked at shortly");
         } else {
           this.showMessage(true, "Oops! Something went wrong. Please try again later.");
@@ -40,6 +42,7 @@ export class FeedbackComponent implements OnInit {
   cancelFeedback() {
     this.feedback = {};
     this.expanded = false;
+    setTimeout(() => { this.displayMessage = false; this.hideForm = false; }, 1000);
   }
 
   showMessage(error: boolean, message: string) {
