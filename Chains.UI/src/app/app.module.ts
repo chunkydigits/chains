@@ -17,6 +17,7 @@ import { CanDeactivateGuard } from './shared/guards/can-deactivate-guard.service
 import { HttpModule } from '@angular/http';
 import { CallbackComponent } from './callback/callback.component';
 import { AuthenticationService } from './shared/services/authentication.service';
+import { FeedbackService } from './shared/services/feedback.service';
 import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
@@ -43,7 +44,8 @@ import { FeedbackComponent } from './feedback/feedback.component';
         InfoTileService, 
         AuthenticationService,
         AuthGuard, 
-        CanDeactivateGuard
+        CanDeactivateGuard, 
+        FeedbackService
     ],
     bootstrap: [
         AppComponent

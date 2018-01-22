@@ -12,6 +12,7 @@ namespace Chains.API.Autofac
         public static void AddRequiredDependencies(ref ContainerBuilder builder)
         {
             builder.RegisterInstance<IPropertyRepository>(new PropertyRepository(new DatabaseRepository(), new GuidRepository(), new DateRepository()));
+            builder.RegisterInstance<IFeedbackRepository>(new FeedbackRepository(new DatabaseRepository(), new GuidRepository(), new DateRepository()));
             builder.RegisterInstance<IRightMoveRepository>(new RightMoveRepository());
         }
     }

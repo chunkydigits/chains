@@ -198,6 +198,7 @@
     <Compile Include="Authorisation\ScopeAuthoriseAttribute.cs" />
     <Compile Include="Autofac\AutofacConfiguration.cs" />
     <Compile Include="Autofac\AutofacDependencies.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Models\Chains.Context.cs">
@@ -225,6 +226,9 @@
       <DependentUpon>Chains.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomDefaultCheckListItem.cs">
+      <DependentUpon>Chains.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feedback.cs">
       <DependentUpon>Chains.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetChainForPropertyId_Result.cs">
@@ -259,8 +263,10 @@
     <Compile Include="Repositories\IDatabaseRepository.cs" />
     <Compile Include="Repositories\IDateRepository.cs" />
     <Compile Include="Repositories\IGuidRepository.cs" />
+    <Compile Include="Repositories\IFeedbackRepository.cs" />
     <Compile Include="Repositories\IPropertyRepository.cs" />
     <Compile Include="Repositories\IRightMoveRepository.cs" />
+    <Compile Include="Repositories\FeedbackRepository.cs" />
     <Compile Include="Repositories\PropertyRepository.cs" />
     <Compile Include="Repositories\RightMoveRepository.cs" />
     <Compile Include="Startup.cs" />

@@ -37,6 +37,7 @@ namespace Chains.API.Models
         public virtual DbSet<PublicUserType> PublicUserTypes { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<TransactionType> TransactionTypes { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
     
         public virtual ObjectResult<GetChainForPropertyId_Result> GetChainForPropertyId(Nullable<System.Guid> sourcePropertyId)
         {

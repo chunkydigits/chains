@@ -25,6 +25,7 @@
         <AssociationConnector Association="ChainsDBModel.FK_Transaction_Property" ManuallyRouted="false" />
         <AssociationConnector Association="ChainsDBModel.FK_PublicUser_PublicUserType" ManuallyRouted="false" />
         <AssociationConnector Association="ChainsDBModel.FK_Transaction_TransactionType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ChainsDBModel.Feedback" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

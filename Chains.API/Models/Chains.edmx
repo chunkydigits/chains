@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ChainsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ChainsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CheckListItem">
           <Key>
             <PropertyRef Name="Id" />
@@ -99,6 +99,26 @@
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Value" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="300" />
+          <Property Name="Details" Type="nvarchar" MaxLength="3000" Nullable="false" />
+          <Property Name="AddedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="500" />
+          <Property Name="Viewed" Type="bit" Nullable="false" />
+          <Property Name="Actioned" Type="bit" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="3000" />
+          <Property Name="ContactedOn" Type="datetime2" Precision="7" />
+          <Property Name="ContactedBy" Type="nvarchar" MaxLength="300" />
+          <Property Name="ContactReason" Type="nvarchar" MaxLength="300" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="300" />
+          <Property Name="DeletedOn" Type="datetime2" Precision="7" />
         </EntityType>
         <Association Name="FK_CustomDefaultCheckList_PublicUser">
           <End Role="PublicUser" Type="Self.PublicUser" Multiplicity="1" />
@@ -234,6 +254,7 @@
           <EntitySet Name="PublicUserType" EntityType="Self.PublicUserType" Schema="chains" store:Type="Tables" />
           <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="chains" store:Type="Tables" />
           <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="chains" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="feedback" store:Type="Tables" />
           <AssociationSet Name="FK_CustomDefaultCheckList_PublicUser" Association="Self.FK_CustomDefaultCheckList_PublicUser">
             <End Role="PublicUser" EntitySet="PublicUser" />
             <End Role="CustomDefaultCheckList" EntitySet="CustomDefaultCheckList" />
@@ -275,8 +296,7 @@
             <End Role="Transaction" EntitySet="Transaction" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChainsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -567,8 +587,9 @@
             <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
           <FunctionImport Name="GetChainForPropertyId" ReturnType="Collection(ChainsDBModel.GetChainForPropertyId_Result)">
-            <Parameter Name="sourcePropertyId" Mode="In" Type="Guid" />
+          <Parameter Name="sourcePropertyId" Mode="In" Type="Guid" />
           </FunctionImport>
+          <EntitySet Name="Feedbacks" EntityType="ChainsDBModel.Feedback" />
         </EntityContainer>
         <ComplexType Name="GetChainForPropertyId_Result">
           <Property Type="Int32" Name="ix" Nullable="true" />
@@ -583,6 +604,26 @@
           <Property Type="Guid" Name="buyerTypeId" Nullable="true" />
           <Property Type="Guid" Name="buyerSellPropertyId" Nullable="true" />
         </ComplexType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Details" Type="String" Nullable="false" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UserId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Viewed" Type="Boolean" Nullable="false" />
+          <Property Name="Actioned" Type="Boolean" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="ContactedOn" Type="DateTime" Precision="7" />
+          <Property Name="ContactedBy" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ContactReason" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="DeletedBy" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="DeletedOn" Type="DateTime" Precision="7" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -711,6 +752,27 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="ChainsDBModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="ContactReason" ColumnName="ContactReason" />
+                <ScalarProperty Name="ContactedBy" ColumnName="ContactedBy" />
+                <ScalarProperty Name="ContactedOn" ColumnName="ContactedOn" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Actioned" ColumnName="Actioned" />
+                <ScalarProperty Name="Viewed" ColumnName="Viewed" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
