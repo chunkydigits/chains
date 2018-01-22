@@ -1,8 +1,9 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EstateAgentComponent } from './estate-agent.component';
+import { EstateAgentPropertiesComponent } from './components/properties/properties.component';
 import { PropertyUpsertComponent } from './../shared/components/property/property-upsert.component';
 import { CanDeactivateGuard } from './../shared/guards/can-deactivate-guard.service';
+import { EstateAgentHomeComponent } from './components/home/home.component';
     
 const estateAgentRoutes: Routes = [
     {
@@ -10,18 +11,17 @@ const estateAgentRoutes: Routes = [
         children: [
             {
                 path: '',
-                component: EstateAgentComponent
+                component: EstateAgentHomeComponent
+            },
+            {
+                path: 'property-list',
+                component: EstateAgentPropertiesComponent
             },
             {
                 path: 'add-property',
                 canDeactivate: [CanDeactivateGuard],
                 component: PropertyUpsertComponent
             }
-            //,
-            //{
-            //    path: 'properties',
-            //    component: PropertyListViewComponent
-            //}
         ]
     }
 ];

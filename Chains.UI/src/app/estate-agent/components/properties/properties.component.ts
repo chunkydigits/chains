@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'estate-agent-page',
-    templateUrl: './estate-agent.component.html',
+    selector: 'estate-agent-properties-page',
+    templateUrl: './properties.component.html',
     styles: [`
         .page { 
             background-color:white;
@@ -15,4 +15,4 @@ import { Component } from '@angular/core';
     `]
 })
 
-export class EstateAgentComponent {}
+export class EstateAgentPropertiesComponent {}

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { EstateAgentComponent } from './estate-agent.component';
+import { EstateAgentPropertiesComponent } from './components/properties/properties.component';
 import { estateAgentRouting } from './estate-agent.routing';
 import { PropertyModule } from '../shared/modules/property.module';
+import { EstateAgentHomeComponent } from './components/home/home.component';
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import { PropertyModule } from '../shared/modules/property.module';
         PropertyModule
     ], 
     declarations: [
-        EstateAgentComponent
+        EstateAgentPropertiesComponent,
+        EstateAgentHomeComponent
     ]
 })
 
