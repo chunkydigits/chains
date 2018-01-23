@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.scss']
 })
 export class EstateAgentHomeComponent implements OnInit {
   private baseUrl: string = 'estate-agent';
@@ -17,5 +17,13 @@ export class EstateAgentHomeComponent implements OnInit {
 
   goToPropertyList(){
     this.router.navigate([this.baseUrl + '/property-list']);
+  }
+
+  goToSettings(){
+    alert('Go to settings');
+  }
+
+  goToManagement(){
+    alert('Go to management');
   }
 }

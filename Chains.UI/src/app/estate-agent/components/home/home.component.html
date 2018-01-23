@@ -1,11 +1,31 @@
 <p>
-  This is the estate agent home page ... 
-  link to: 
+  This is the estate agent home page ... link to:
 </p>
-  <ul>
-    <li><a (click)="goToPropertyList()">Property List</a></li>
-    <li>Management Area</li>
-    <li>Administration Area</li>
-    <li>Dashboard view maybe here ... need to have a think</li>
-  </ul>
-
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-4 tile" (click)="goToPropertyList()">
+      <div class="tile-icon">
+        <i class="material-icons">location_city</i>
+      </div>
+      <div class="tile-link">
+        Property List
+      </div>
+    </div>
+    <div class="col-md-4 tile" (click)="goToManagement()">
+      <div class="tile-icon">
+        <i class="material-icons">playlist_add_check</i>
+      </div>
+      <div class="tile-link">
+        Management
+      </div>
+    </div>
+    <div class="col-md-4 tile" (click)="goToSettings()">
+      <div class="tile-icon">
+        <i class="material-icons">settings</i>
+      </div>
+      <div class="tile-link">
+        Settings
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+.tile  {
+    height:200px;
+    background-color:slategray;
+    display: block;
+    color:white;
+    padding:20px;
+    transition: background-color 0.5s ease;
+
+    &:hover { 
+        background-color: darkslategrey;
+        cursor: pointer;
+    }
+    
+    .tile-icon { 
+        width:100%;
+        text-align: center;
+
+        i {
+            font-size:7em;
+        }
+    }
+
+    .tile-link {
+        font-size:1.5em;
+        text-transform: capitalize;
+        text-align: center;
+        color:white;
+        text-decoration: white;
+    }
+}
