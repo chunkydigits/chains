@@ -10,31 +10,31 @@
                 <li>
                     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact:true }">Home</a>
                 </li>
-                <li>
+                <li *ngIf="auth.isAuthenticated()">
                     <a routerLink="/public-user" routerLinkActive="{{auth.isAuthenticated()}}">Buyer / Seller</a>
                 </li>
-                <li>
+                <li *ngIf="auth.isAuthenticated()">
                     <a routerLink="/estate-agent" routerLinkActive="{{auth.isAuthenticated()}}">Estate Agent</a>
                 </li>
-                <li>
+                <li *ngIf="auth.isAuthenticated()">
                     <a routerLink="/solicitor" routerLinkActive="{{auth.isAuthenticated()}}">Solicitor</a>
                 </li>
                 <li>
-                    <a routerLink="/about" routerLinkActive="{{auth.isAuthenticated()}}">About</a>
+                    <a routerLink="/about">About</a>
                 </li>
                 <li>
                     <a routerLink="/contact" routerLinkActive="active">Contact</a>
                 </li>
             </ul>
-            <ul style="position:absolute;right:0;">
-                <li *ngIf="!auth.isAuthenticated()" (click)="auth.login()">
-                    Sign Up or Login
-                </li>
+            <div class="login-container">
+                <div *ngIf="!auth.isAuthenticated()" (click)="auth.login()">
+                    Sign Up / Login
+                </div>
 
-                <li *ngIf="auth.isAuthenticated()" (click)="auth.logout()">
+                <div *ngIf="auth.isAuthenticated()" (click)="auth.logout()">
                     Logout
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
     </nav>
 </header>

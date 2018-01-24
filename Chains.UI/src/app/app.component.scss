@@ -11,8 +11,8 @@
 }
 
 .navbar-inverse { 
-    /* background-color:#30bf2f; */
-    background-color:#ffffff;
+    background-color:#30bf2f;
+    // background-color:#ffffff;
 }
 
 .navbar-nav {
@@ -48,4 +48,10 @@ footer {
 main { 
     margin-bottom:50px;
     display:inline-block;
+}
+
+.login-container {
+    position:absolute;
+    right:5px;
+    color:white;
 }

@@ -12,9 +12,7 @@ const appRoutes: Routes = [
     { path: 'callback', component: CallbackComponent},
     {
         path: 'about',
-        loadChildren: 'app/about/about.module#AboutModule',
-        canActivateChild: [AuthGuard],
-        canActivate: [AuthGuard]
+        loadChildren: 'app/about/about.module#AboutModule'
     },
     {
         path: 'estate-agent',
