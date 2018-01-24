@@ -13,6 +13,18 @@
           <Property Name="DisplayName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Details" Type="nvarchar(max)" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ChainsDB.chains.CheckListItemDefaultCollection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CheckListItemDefaultCollection">
+          <Key>
+            <PropertyRef Name="CheckListItemId" />
+            <PropertyRef Name="AddedBy" />
+            <PropertyRef Name="AddedOn" />
+          </Key>
+          <Property Name="CheckListItemId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="AddedOn" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="Code">
           <Key>
             <PropertyRef Name="Id" />
@@ -255,6 +267,13 @@
           <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="chains" store:Type="Tables" />
           <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="chains" store:Type="Tables" />
           <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="feedback" store:Type="Tables" />
+          <EntitySet Name="CheckListItemDefaultCollection" EntityType="Self.CheckListItemDefaultCollection" store:Type="Tables" store:Schema="chains">
+            <DefiningQuery>SELECT 
+    [CheckListItemDefaultCollection].[CheckListItemId] AS [CheckListItemId], 
+    [CheckListItemDefaultCollection].[AddedBy] AS [AddedBy], 
+    [CheckListItemDefaultCollection].[AddedOn] AS [AddedOn]
+    FROM [chains].[CheckListItemDefaultCollection] AS [CheckListItemDefaultCollection]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_CustomDefaultCheckList_PublicUser" Association="Self.FK_CustomDefaultCheckList_PublicUser">
             <End Role="PublicUser" EntitySet="PublicUser" />
             <End Role="CustomDefaultCheckList" EntitySet="CustomDefaultCheckList" />
@@ -590,6 +609,7 @@
           <Parameter Name="sourcePropertyId" Mode="In" Type="Guid" />
           </FunctionImport>
           <EntitySet Name="Feedbacks" EntityType="ChainsDBModel.Feedback" />
+          <EntitySet Name="CheckListItemDefaultCollections" EntityType="ChainsDBModel.CheckListItemDefaultCollection" />
         </EntityContainer>
         <ComplexType Name="GetChainForPropertyId_Result">
           <Property Type="Int32" Name="ix" Nullable="true" />
@@ -623,6 +643,16 @@
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <Property Name="DeletedBy" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="DeletedOn" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="CheckListItemDefaultCollection">
+          <Key>
+            <PropertyRef Name="CheckListItemId" />
+            <PropertyRef Name="AddedBy" />
+            <PropertyRef Name="AddedOn" />
+          </Key>
+          <Property Name="CheckListItemId" Type="Guid" Nullable="false" />
+          <Property Name="AddedBy" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -770,6 +800,15 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckListItemDefaultCollections">
+            <EntityTypeMapping TypeName="ChainsDBModel.CheckListItemDefaultCollection">
+              <MappingFragment StoreEntitySet="CheckListItemDefaultCollection">
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="CheckListItemId" ColumnName="CheckListItemId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -28,12 +28,12 @@
             </div>
             <div class="col-md-12">
                 <h2>Check List Items</h2>
-                <div class="input-group col-md-12" *ngFor="let checkListItem of property.propertyCheckListItems">
-                    <div class="col-md-4">{{checkListItem.displayName}}</div>
+                <div class="input-group col-md-12" *ngFor="let checkListItem of property.PropertyCheckListitems">
+                    <div class="col-md-4">{{checkListItem.DisplayName}}</div>
                     <div class="col-md-2">
-                        <input type="checkbox" [(ngModel)]="checkListItem.completed" disabled="disabled"/>
+                        <input type="checkbox" [(ngModel)]="checkListItem.Completed" disabled="disabled"/>
                     </div>
-                    <div class="col-md-6" *ngIf="checkListItem.completed">Completed on {{checkListItem.completedDate | date: 'dd/MM/yyyy'}} <span *ngIf="checkListItem.completedUserId"> by user with ID {{checkListItem.completedUserId}}</span></div>
+                    <div class="col-md-6" *ngIf="checkListItem.Completed">Completed on {{checkListItem.Completed | date: 'dd/MM/yyyy'}} <span *ngIf="checkListItem.CompletedUserId"> by user with ID {{checkListItem.CompletedUserId}}</span></div>
                 </div>
             </div>
         </div>

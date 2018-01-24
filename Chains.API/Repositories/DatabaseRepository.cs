@@ -48,5 +48,18 @@ namespace Chains.API.Repositories
 
             context.SaveChanges();
         }
+
+        public List<CheckListItem> GetDefaultCheckListItems(ChainsDBEntities context)
+        {
+            var defaultCollection = context.CheckListItemDefaultCollections.ToList();
+            var checkListItems = context.CheckListItems.Where(o => defaultCollection.Any(x => x.CheckListItemId == o.Id));
+            return checkListItems.ToList();
+        }
+
+        public void AddPropertyCheckListItems(ChainsDBEntities context, List<PropertyCheckListitem> checkListItems)
+        {
+            context.PropertyCheckListitems.AddRange(checkListItems);
+            context.SaveChanges();
+        }
     }
 }

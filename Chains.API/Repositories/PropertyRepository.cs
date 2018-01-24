@@ -60,6 +60,7 @@ namespace Chains.API.Repositories
                 using (var context = new ChainsDBEntities())
                 {
                     var insert = viewModel.Id == _guidRepository.EmptyGuid();
+                    Property propertyToUpsert;
 
                     if (insert)
                     {
@@ -67,28 +68,37 @@ namespace Chains.API.Repositories
                         _databaseRepository.AddItem(context, buyerCode);
                         var sellerCode = GetNewCode();
                         _databaseRepository.AddItem(context, sellerCode);
-                    }
+                        propertyToUpsert = ConvertPropertyViewModelToDBType(viewModel, buyerCode.Id, sellerCode.Id);
 
-                    var propertyToUpsert = ConvertPropertyViewModelToDBType(viewModel, viewModel.BuyerCodeId, viewModel.SellerCodeId);
-                    
-                    // TODO: add standard checklist items 
-                    if (insert)
-                    {
-                        _databaseRepository.AddItem<Property>(context, propertyToUpsert);
+                        var defaultCheckListItems = _databaseRepository.GetDefaultCheckListItems(context);
+                        _databaseRepository.AddItem(context, propertyToUpsert);
+                        AddPropertyCheckListItem(context, propertyToUpsert.Id, defaultCheckListItems);
                     }
                     else
                     {
-                        _databaseRepository.Update(context, propertyToUpsert, propertyToUpsert.Id);   
+                        propertyToUpsert = ConvertPropertyViewModelToDBType(viewModel, viewModel.BuyerCodeId, viewModel.SellerCodeId);
+                        _databaseRepository.Update(context, propertyToUpsert, propertyToUpsert.Id);
                     }
-
+                    
                     return true;
                 }
-            }
+            }   
             catch (Exception ex)
             {
                 _logger.ErrorFormat("Could not save the property with RMI: {0} \r\n Exception: {1}", viewModel.RightMoveIdentifier, ex.Message);
                 return false;
             }
+        }
+
+        private void AddPropertyCheckListItem(ChainsDBEntities context, Guid propertyId, List<CheckListItem> checkListItems)
+        {
+            var propertyCheckListItemsToAdd = new List<PropertyCheckListitem>();
+            foreach (var checkListItem in checkListItems)
+            {
+                propertyCheckListItemsToAdd.Add(new PropertyCheckListitem { Id = _guidRepository.NewGuid(), CheckListItemId = checkListItem.Id, Created = _dateRepository.Now(), PropertyId = propertyId });
+            }
+
+            _databaseRepository.AddPropertyCheckListItems(context, propertyCheckListItemsToAdd);
         }
 
         public bool Delete(Guid id, string username)

@@ -219,6 +219,9 @@
     <Compile Include="Models\CheckListItem.cs">
       <DependentUpon>Chains.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CheckListItemDefaultCollection.cs">
+      <DependentUpon>Chains.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Code.cs">
       <DependentUpon>Chains.tt</DependentUpon>
     </Compile>

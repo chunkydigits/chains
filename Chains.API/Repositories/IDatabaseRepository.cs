@@ -15,5 +15,7 @@ namespace Chains.API.Repositories
         List<Property> GetAllProperties(ChainsDBEntities context);
         List<PropertyCheckListitem> GetCheckListItemsForProperty(ChainsDBEntities context, Guid propertyId);
         void DeleteProperty(ChainsDBEntities context, Guid id, string username, DateTime now);
+        List<CheckListItem> GetDefaultCheckListItems(ChainsDBEntities context);
+        void AddPropertyCheckListItems(ChainsDBEntities context, List<PropertyCheckListitem> checkListItems);
     }
 }
