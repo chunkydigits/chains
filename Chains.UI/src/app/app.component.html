@@ -20,7 +20,10 @@
                     <a routerLink="/estate-agent">Estate Agent</a>
                 </li>
                 <li *ngIf="auth.isAuthenticated()">
-                    <a routerLink="/solicitor" routerLinkActive="{{auth.isAuthenticated()}}">Solicitor</a>
+                    <a routerLink="/solicitor/dashboard">Solicitor</a>
+                </li>
+                <li *ngIf="!auth.isAuthenticated()">
+                    <a routerLink="/solicitor">Solicitor</a>
                 </li>
                 <li>
                     <a routerLink="/about">About</a>

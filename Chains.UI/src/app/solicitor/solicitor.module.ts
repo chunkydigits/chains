@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { SolicitorComponent } from './solicitor.component';
+import { SolicitorDashboardComponent } from './components/dashboard/dashboard.component';
 import { solicitorRouting } from './solicitor.routing';
+import { SolicitorInformationComponent } from './components/information/information.component';
 
 @NgModule({
     imports: [
@@ -11,7 +12,8 @@ import { solicitorRouting } from './solicitor.routing';
         solicitorRouting
     ], 
     declarations: [
-        SolicitorComponent
+        SolicitorDashboardComponent,
+        SolicitorInformationComponent
     ]
 })
 

@@ -1,6 +1,8 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SolicitorComponent } from './solicitor.component';
+import { SolicitorDashboardComponent } from './components/dashboard/dashboard.component';
+import { SolicitorInformationComponent } from './components/information/information.component';
+import { AuthGuard } from '../shared/guards/auth-guard.service';
     
 const solicitorRoutes: Routes = [
     {
@@ -8,7 +10,12 @@ const solicitorRoutes: Routes = [
         children: [
             {
                 path: '',
-                component: SolicitorComponent
+                component: SolicitorInformationComponent
+            },
+            {
+                path: 'dashboard',
+                component: SolicitorDashboardComponent, 
+                canActivate: [AuthGuard]
             }]
     }
 ];

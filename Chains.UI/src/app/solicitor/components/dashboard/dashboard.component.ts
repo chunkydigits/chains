@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'solicitor-page',
-    templateUrl: './solicitor.component.html',
+    selector: 'solicitor-dashboard-page',
+    templateUrl: './dashboard.component.html',
     styles: [`
         .page { 
             background-color:white;
@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
     `]
 })
 
-export class SolicitorComponent {
+export class SolicitorDashboardComponent {
 
 }

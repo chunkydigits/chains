@@ -26,9 +26,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'solicitor',
-        loadChildren: 'app/solicitor/solicitor.module#SolicitorModule',
-        canActivateChild: [AuthGuard],
-        canActivate: [AuthGuard]
+        loadChildren: 'app/solicitor/solicitor.module#SolicitorModule'
     },
     { path: 'contact', component: ContactComponent },
     { path: 'unauthorised', component: HomeComponent },
