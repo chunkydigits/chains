@@ -20,9 +20,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'public-user',
-        loadChildren: 'app/public-user/public-user.module#PublicUserModule',
-        canActivateChild: [AuthGuard],
-        canActivate: [AuthGuard]
+        loadChildren: 'app/public-user/public-user.module#PublicUserModule'
     },
     {
         path: 'solicitor',

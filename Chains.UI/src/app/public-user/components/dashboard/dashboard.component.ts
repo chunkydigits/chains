@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'public-user-page',
-    templateUrl: './public-user.component.html',
+    selector: 'public-user-dashboard-page',
+    templateUrl: './dashboard.component.html',
     styles: [`
         .page { 
             background-color:white;
@@ -12,4 +12,4 @@ import { Component } from '@angular/core';
     `]
 })
 
-export class PublicUserComponent {}
+export class PublicUserDashboardComponent {}

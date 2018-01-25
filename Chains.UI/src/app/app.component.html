@@ -10,20 +10,17 @@
                 <li>
                     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact:true }">Home</a>
                 </li>
-                <li *ngIf="auth.isAuthenticated()">
-                    <a routerLink="/public-user" routerLinkActive="{{auth.isAuthenticated()}}">Buyer / Seller</a>
+                <li >
+                    <a *ngIf="auth.isAuthenticated()" routerLink="/public-user/dashboard">Buyer / Seller</a>
+                    <a *ngIf="!auth.isAuthenticated()" routerLink="/public-user">Buyer / Seller</a>
                 </li>
-                <li *ngIf="auth.isAuthenticated()">
-                    <a routerLink="/estate-agent/dashboard">Estate Agent</a>
+                <li>
+                    <a *ngIf="auth.isAuthenticated()" routerLink="/estate-agent/dashboard">Estate Agent</a>
+                    <a *ngIf="!auth.isAuthenticated()" routerLink="/estate-agent">Estate Agent</a>
                 </li>
-                <li *ngIf="!auth.isAuthenticated()">
-                    <a routerLink="/estate-agent">Estate Agent</a>
-                </li>
-                <li *ngIf="auth.isAuthenticated()">
-                    <a routerLink="/solicitor/dashboard">Solicitor</a>
-                </li>
-                <li *ngIf="!auth.isAuthenticated()">
-                    <a routerLink="/solicitor">Solicitor</a>
+                <li>
+                    <a *ngIf="auth.isAuthenticated()" routerLink="/solicitor/dashboard">Solicitor</a>
+                    <a *ngIf="!auth.isAuthenticated()" routerLink="/solicitor">Solicitor</a>
                 </li>
                 <li>
                     <a routerLink="/about">About</a>

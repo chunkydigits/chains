@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { PublicUserComponent } from './public-user.component';
+import { PublicUserDashboardComponent } from './components/dashboard/dashboard.component';
+import { PublicUserInformationComponent } from './components/information/information.component';
 import { publicUserRouting } from './public-user.routing';
 import { ChainModule } from '../shared/modules/chain.module';
 
@@ -13,7 +14,8 @@ import { ChainModule } from '../shared/modules/chain.module';
         ChainModule
     ], 
     declarations: [
-        PublicUserComponent
+        PublicUserDashboardComponent,
+        PublicUserInformationComponent
     ]
 })
 
