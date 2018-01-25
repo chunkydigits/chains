@@ -14,7 +14,10 @@
                     <a routerLink="/public-user" routerLinkActive="{{auth.isAuthenticated()}}">Buyer / Seller</a>
                 </li>
                 <li *ngIf="auth.isAuthenticated()">
-                    <a routerLink="/estate-agent" routerLinkActive="{{auth.isAuthenticated()}}">Estate Agent</a>
+                    <a routerLink="/estate-agent/dashboard">Estate Agent</a>
+                </li>
+                <li *ngIf="!auth.isAuthenticated()">
+                    <a routerLink="/estate-agent">Estate Agent</a>
                 </li>
                 <li *ngIf="auth.isAuthenticated()">
                     <a routerLink="/solicitor" routerLinkActive="{{auth.isAuthenticated()}}">Solicitor</a>

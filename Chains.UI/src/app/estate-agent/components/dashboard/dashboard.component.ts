@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'estate-agent-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class EstateAgentHomeComponent implements OnInit {
+export class EstateAgentDashboardComponent implements OnInit {
   private baseUrl: string = 'estate-agent';
 
   constructor(private router: Router) { }

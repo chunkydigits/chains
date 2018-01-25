@@ -16,9 +16,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'estate-agent',
-        loadChildren: 'app/estate-agent/estate-agent.module#EstateAgentModule',
-        canActivateChild: [AuthGuard],
-        canActivate: [AuthGuard]
+        loadChildren: 'app/estate-agent/estate-agent.module#EstateAgentModule'
     },
     {
         path: 'public-user',
@@ -33,6 +31,7 @@ const appRoutes: Routes = [
         canActivate: [AuthGuard]
     },
     { path: 'contact', component: ContactComponent },
+    { path: 'unauthorised', component: HomeComponent },
     { path: '**', component: NotFoundComponent }
 ]
 
