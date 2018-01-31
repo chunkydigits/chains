@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chains.API", "Chains.API\Chains.API.csproj", "{8E19BD98-D8C6-402F-B1CC-D1913E7A6C56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chains.API.Test", "Chains.API.Test\Chains.API.Test.csproj", "{8839758A-A961-4A4C-849F-5517FA7235BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8E19BD98-D8C6-402F-B1CC-D1913E7A6C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E19BD98-D8C6-402F-B1CC-D1913E7A6C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E19BD98-D8C6-402F-B1CC-D1913E7A6C56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8839758A-A961-4A4C-849F-5517FA7235BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8839758A-A961-4A4C-849F-5517FA7235BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8839758A-A961-4A4C-849F-5517FA7235BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8839758A-A961-4A4C-849F-5517FA7235BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
