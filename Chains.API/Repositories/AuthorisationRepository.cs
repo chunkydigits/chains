@@ -27,9 +27,9 @@ namespace Chains.API.Repositories
             return $"{tokenType} {accessToken}";
         }
 
-        public bool VerifyAccessToken(string accessToken)
+        public void AddScopeToUser(string authorisationHeader, string scope, string username)
         {
-
+            // use this to add the scope to the users. need to think architecturally the best way to do this. 
         }
 
         public bool SendRequestWithAccessTokenToApi(string authorisationHeader)
