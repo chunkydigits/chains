@@ -9,6 +9,6 @@ namespace Chains.API.Repositories
     public interface IAuthorisationRepository
     {
         // Generic
-        UserScope GetUserScope(string userIdentifier);
+        User GetUserScope(string userIdentifier);
     }
 }

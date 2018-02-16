@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Core;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using Chains.API.Controllers;
+﻿using System.Linq;
+using Chains.API.Exceptions;
 using Chains.API.Models;
 
 namespace Chains.API.Repositories
 {
     public class AuthorisationRepository : IAuthorisationRepository
     {
-        private DbContext _context = new ChainsDBEntities();
+        private AuthenticationDBEntities _context = new AuthenticationDBEntities();
         
-        public UserScope GetUserScope(string userIdentifier)
+        public User GetUserScope(string userIdentifier)
         {
-            throw new NotImplementedException();
-            //return _context.GetUserScope(userIdentifier);
+            var users = _context.Users.Where(o => o.UserIdentifier == userIdentifier);
+            if (!users.Any())
+                throw new UserDoesNotExistException(userIdentifier);
+            if (users.Count() > 1)
+                throw new TooManyUsersExistWithSameUserName(userIdentifier);
+            return users.First();
         }
     }
 }

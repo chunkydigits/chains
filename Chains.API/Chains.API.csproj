@@ -161,8 +161,25 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Chains.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Models\AuthenticationModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AuthenticationModel.edmx</DependentUpon>
+      <LastGenOutput>AuthenticationModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\AuthenticationModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AuthenticationModel.edmx</DependentUpon>
+      <LastGenOutput>AuthenticationModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\Chains.edmx.diagram">
       <DependentUpon>Chains.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\AuthenticationModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AuthenticationModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\AuthenticationModel.edmx.diagram">
+      <DependentUpon>AuthenticationModel.edmx</DependentUpon>
     </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -199,8 +216,24 @@
     <Compile Include="Autofac\AutofacConfiguration.cs" />
     <Compile Include="Autofac\AutofacDependencies.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\AuthorisationController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Models\AuthenticationModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthenticationModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AuthenticationModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthenticationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AuthenticationModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthenticationModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Chains.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -255,14 +288,19 @@
     <Compile Include="Models\TransactionType.cs">
       <DependentUpon>Chains.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>AuthenticationModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewModels\CheckListItemViewModel.cs" />
     <Compile Include="Models\ViewModels\PropertyCheckListItemViewModel.cs" />
     <Compile Include="Models\ViewModels\PropertyInformationViewModel.cs" />
     <Compile Include="Models\ViewModels\RightMoveDetailViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AuthorisationRepository.cs" />
     <Compile Include="Repositories\DatabaseRepository.cs" />
     <Compile Include="Repositories\DateRepository.cs" />
     <Compile Include="Repositories\GuidRepository.cs" />
+    <Compile Include="Repositories\IAuthorisationRepository.cs" />
     <Compile Include="Repositories\IDatabaseRepository.cs" />
     <Compile Include="Repositories\IDateRepository.cs" />
     <Compile Include="Repositories\IGuidRepository.cs" />
@@ -272,6 +310,8 @@
     <Compile Include="Repositories\FeedbackRepository.cs" />
     <Compile Include="Repositories\PropertyRepository.cs" />
     <Compile Include="Repositories\RightMoveRepository.cs" />
+    <Compile Include="Exceptions\TooManyUsersExistWithSameUserName.cs" />
+    <Compile Include="Exceptions\UserDoesNotExistException.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

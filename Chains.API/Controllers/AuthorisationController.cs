@@ -24,13 +24,9 @@ namespace Chains.API.Controllers
 
         [HttpGet]
         // GET: Property
-        public UserScope Get(string userIdentifier)
+        public User Get(string userIdentifier)
         {
-            return new UserScope();
+            return _authorisationRepository.GetUserScope(userIdentifier);
         }
-    }
-
-    public class UserScope
-    {
     }
 }
